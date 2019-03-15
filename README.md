@@ -1,2 +1,2 @@
-# S19A1
-Spring 2019, Section A, Group 1
+# S19B1
+Spring 2019, Section B, Group 1
