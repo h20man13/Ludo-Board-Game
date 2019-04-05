@@ -12,8 +12,8 @@
 package hw3UnitTest;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import HW3.Customer;
 
 /**
  * 
@@ -21,8 +21,10 @@ import org.junit.Test;
 public class CustomerTest {
 
    @Test
-   public void test() {
-      fail("Not yet implemented");
+   public void test() 
+   {
+      Customer jerry = new Customer("Jerry", "Mggaffany", 'H', 980);
+      assertNull(jerry.toString());
    }
 
 }
