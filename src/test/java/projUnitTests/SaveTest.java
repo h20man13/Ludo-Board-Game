@@ -1,3 +1,4 @@
+package projUnitTests;
 ////////////////////////////////////////////////////////////////////////////////
 // File:             SaveTest.java
 // Course:           CSC232B, Spring 2019
@@ -9,7 +10,7 @@
 // Online sources:   (include Web URLs and description of any information used)
 ////////////////////////////////////////////////////////////////////////////////
 
-package Control;
+
 
 import static org.junit.Assert.*;
 import java.io.FileNotFoundException;
