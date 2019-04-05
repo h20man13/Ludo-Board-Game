@@ -35,6 +35,7 @@ public class Save
       {
          // TODO Auto-generated catch block
          e.printStackTrace();
+         System.err.println("Error: File not found");
       }
       try 
       {
@@ -66,5 +67,17 @@ public class Save
    public boolean isEmpty()
    {
       return (f.length() == 0);
+   }
+   public static int toInt(String s)
+   {
+      long tenvar = 1;
+      int length = s.length() - 1;
+      int awnser = 0;
+      for(int i = length - 1; i >= 0; i--)
+      {
+         awnser += (((int)s.charAt(i)) - (int)'0') * tenvar;
+         tenvar *= 10;
+      }
+      return awnser;
    }
 }

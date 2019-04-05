@@ -37,9 +37,10 @@ public class SaveTest {
    public void testGet() 
    {
       String[] ss = s.get();
+      String[] actual = new String[]{"Line 1", "Line 2", "7890"};
       for(int i = 0; i < ss.length; i++)
       {
-         assert.assertArrayEquals();
+         assertEquals(ss[i], actual[i]);
       }
    }
 
@@ -49,7 +50,7 @@ public class SaveTest {
    @Test
    public void testIsEmpty() 
    {
-      assert.assertTrue(s.isEmpty());
+      assertTrue(s.isEmpty());
    }
 
 }

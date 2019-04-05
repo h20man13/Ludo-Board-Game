@@ -28,8 +28,7 @@ public class DiceTest {
    public void testDice() 
    {
       Dice first = new Dice("df;lkjhgs");
-      Assert.assertNull(first.roll());
-      
+      assertNull(first.roll());
    }
 
 }
