@@ -10,9 +10,9 @@
       Small overview
     </h1>
     <p> 
-      This project has all the main code in the main/java/console package
+      This project has all the main code in the src/main/java/console package
       <br>
-      The project unit tests are in the main/java/test package
+      The project unit tests are in the src/test/java/projUnitTests package
     </p>
   </body>
 </html>
