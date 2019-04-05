@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
       #S19B1
       <br>
       Spring 2019, Section B, Group 1 
-    </title>
   </head>
   <p> 
     This project has all the main code in the main/java/console package
