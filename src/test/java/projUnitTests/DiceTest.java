@@ -8,7 +8,6 @@ package projUnitTests;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-
 import Control.Dice;
 
 /**
