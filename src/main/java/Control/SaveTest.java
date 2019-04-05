@@ -10,8 +10,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 package Control;
-import static org.junit.Assert.*;
 
+import static org.junit.Assert.*;
+import java.io.FileNotFoundException;
 import org.junit.Test;
 
 /**
@@ -24,7 +25,7 @@ public class SaveTest {
     */
    Save s = new Save("SaveTest.txt");
    @Test
-   public void testSave() 
+   public void testSave() throws FileNotFoundException 
    {
       String[] ss = new String[]{"Hey was up","Cool  "};
       s.save(ss);
@@ -32,9 +33,10 @@ public class SaveTest {
 
    /**
     * Test method for {@link Control.Save#get()}.
+    * @throws FileNotFoundException 
     */
    @Test
-   public void testGet() 
+   public void testGet() throws FileNotFoundException 
    {
       String[] ss = s.get();
       String[] actual = new String[]{"Line 1", "Line 2", "7890"};

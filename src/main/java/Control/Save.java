@@ -20,49 +20,43 @@ import java.util.Scanner;
  */
 public class Save 
 {
-   private Scanner sc;
-   private PrintWriter pw;
    private int lines;
    private File f;
    public Save(String filename)
    {
+      lines = 0;
       f = new File(filename);
-      try 
-      {
-         pw = new PrintWriter(f);
-      } 
-      catch(FileNotFoundException e) 
-      {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-         System.err.println("Error: File not found");
-      }
-      try 
-      {
-         sc = new Scanner(f);
-      } 
-      catch (FileNotFoundException e) 
-      {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
    }
-   public void save(String[] saveData)
+   public void save(String[] saveData) throws FileNotFoundException
    {
+      PrintWriter pw = new PrintWriter(f); //create printer to store data
       lines = saveData.length;
       for(int i = 0; i < lines; i++)
       {
          pw.println(saveData[i]);
       }
+      pw.close();
    }
-   public String[] get()
+   public String[] get() throws FileNotFoundException
    {
-      String[] l = new String[lines];
-      for(int i = 0; i < lines; i++)
+      if(isEmpty())
       {
-         l[i] = sc.nextLine();
+         Scanner sc = new Scanner(f); //create scanner
+         String[] l = new String[lines]; //create array to return the size of lines that is determined in the save method
+         for(int i = 0; i < lines; i++)
+         {
+            l[i] = sc.nextLine();
+         }
+         sc.close();
+         f.delete(); //delete file after it is used
+         return l;
       }
-      return l;
+      else
+      {
+         System.err.println("Error: No data to get the file is empty");
+         String[] f = new String[]{"The", "File", "is", "empty"};
+         return f;
+      }
    }
    public boolean isEmpty()
    {
