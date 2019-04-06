@@ -17,9 +17,8 @@ import java.lang.StringBuilder;
  * Then the get method is used to retrieve the data back into an String array. I also included a method to check if the file is empty
  * and a method to change a string of numerical values into an int. 
  */
-public class Save 
-{
-   private int lines;
+public class Save // the file format is as followed the first line printed in to the file is how many lines need to be scanned from the file          
+{                 // the other lines are the data saved to the file
    private File f;
    public static void main(String[] args) throws FileNotFoundException //main method to 
    {
@@ -42,19 +41,20 @@ public class Save
       }
       */
       System.out.println(exists("testSave.txt"));//try to see if there is a save available
-      //there wont be a save available because we used get which deletes the file
+      //there should be a save available under this name because lines 37 - 41 were commented out
+      //if you uncomment them the get method will delete the file at the end
       System.out.print(toString(124345));
    }
    public Save(String filename)
    {
-      lines = 0;
       f = new File(filename);
    }
    public void save(String[] saveData) throws FileNotFoundException
    {
-      PrintWriter pw = new PrintWriter(f); //create printer to store data
-      lines = saveData.length; //set lines to the input arrays length so it knows how many lines it will need to get
-      for(int i = 0; i < lines; i++)
+      PrintWriter pw = new PrintWriter(f);
+      int size = saveData.length; //create printer to store data
+      pw.println(toString(size));
+      for(int i = 0; i < size; i++)
       {
          pw.println(saveData[i]);
       }
@@ -65,7 +65,8 @@ public class Save
       if(exists(fName))
       {
          Scanner sc = new Scanner(f); //create scanner
-         String[] l = new String[lines]; //create array to return the size of lines that is determined in the save method
+         int lines = toInt(sc.nextLine()); //scan line 1 representing the number of lines that need to be scanned
+         String[] l = new String[lines]; //create array the size of the first line entered into the file
          for(int i = 0; i < lines; i++)
          {
             l[i] = sc.nextLine();
@@ -98,7 +99,7 @@ public class Save
       }
       return awnser;
    }
-   public static String toString(int I) //converts int to a STRING
+   public static String toString(int I) //converts int to a string
    {
       int count = 0;
       StringBuilder awnser = new StringBuilder("");
