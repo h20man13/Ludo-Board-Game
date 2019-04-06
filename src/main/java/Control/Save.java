@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.lang.StringBuilder;
 /**
  * This class was designed to create a save file The user uses the constructor to create the file based off of the name given
  * Then the save method is used to convert a String array into the save format. Each cell in the array is a line on the file.
@@ -20,12 +21,27 @@ public class Save
 {
    private int lines;
    private File f;
-   public static void main(String[] args) //main method to 
+   public static void main(String[] args) throws FileNotFoundException //main method to 
    {
-      System.out.println(toInt("123456")); //should print out the same thing inputed
+      System.out.println(toInt("123456"));
+      System.out.println(toInt("2") + toInt("3"));
+      //should print out the same thing inputed
       Save s = new Save("testSave.txt");
-      String[] t = new String[]{};
-      s.save();
+      String[] t = new String[]{"Line 1","Line 2"};
+      /* 
+       * now the file should appear like this
+       * Line 1
+       * Line 2
+       */
+      s.save(t);
+      String[] c = s.get("testSave.txt");
+      for(int i = 0; i < c.length; i++)
+      {
+         System.out.println(c[i]); //should match what is i the file however the file should be deleted after get is used
+      }
+      System.out.println(exists("testSave.txt"));//try to see if there is a save available
+      //there wont be a save available because we used get which deletes the file
+      System.out.print(toString(124345));
    }
    public Save(String filename)
    {
@@ -42,9 +58,9 @@ public class Save
       }
       pw.close();
    }
-   public String[] get() throws FileNotFoundException
+   public String[] get(String fName) throws FileNotFoundException
    {
-      if(isEmpty())
+      if(exists(fName))
       {
          Scanner sc = new Scanner(f); //create scanner
          String[] l = new String[lines]; //create array to return the size of lines that is determined in the save method
@@ -58,25 +74,38 @@ public class Save
       }
       else
       {
-         System.err.println("Error: No data to get the file is empty");
-         String[] f = new String[]{"The", "File", "is", "empty"};
+         System.err.print("Error: File is unexistant");
+         String[] f = new String[]{};
          return f;
       }
    }
-   public boolean isEmpty() //check if the file is empty
+   public static boolean exists(String filename) //check if the file exists
    {
-      return (f.length() == 0);
+      File a = new File(filename);
+      return a.exists();
    }
-   public static long toInt(String s)
+   public static int toInt(String s)
    {
-      long tenvar = 1;
+      int tenvar = 1;
       int length = s.length() - 1;
       int awnser = 0;
-      for(int i = length - 1; i >= 0; i--)
+      for(int i = length; i >= 0; i--)
       {
          awnser += (((int)s.charAt(i)) - (int)'0') * tenvar;
          tenvar *= 10;
       }
       return awnser;
+   }
+   public static String toString(int I) //converts int to a STRING
+   {
+      int count = 0;
+      StringBuilder awnser = new StringBuilder("");
+      while(I > 0)
+      {
+         awnser.insert(count, (char)((I % 10) + ((int)'0')));
+         I /= 10;
+         count++;
+      }
+      return awnser.reverse().toString();
    }
 }

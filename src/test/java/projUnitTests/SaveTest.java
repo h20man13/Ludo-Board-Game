@@ -16,10 +16,13 @@ import static org.junit.Assert.*;
 import java.io.FileNotFoundException;
 import org.junit.Test;
 
+import Control.Save;
+
 /**
  * 
  */
-public class SaveTest {
+public class SaveTest 
+{
 
    /**
     * Test method for {@link Control.Save#save(java.lang.String[])}.
@@ -39,21 +42,11 @@ public class SaveTest {
    @Test
    public void testGet() throws FileNotFoundException 
    {
-      String[] ss = s.get();
+      String[] ss = s.get("SaveTest.txt");
       String[] actual = new String[]{"Line 1", "Line 2", "7890"};
       for(int i = 0; i < ss.length; i++)
       {
          assertEquals(ss[i], actual[i]);
       }
    }
-
-   /**
-    * Test method for {@link Control.Save#isEmpty()}.
-    */
-   @Test
-   public void testIsEmpty() 
-   {
-      assertTrue(s.isEmpty());
-   }
-
 }

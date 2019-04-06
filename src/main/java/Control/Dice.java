@@ -15,6 +15,19 @@ import java.util.Random;
  */
 public class Dice 
 {
+   public static void main(String[] args)
+   {
+      int amount =  30; //amount to tell if the dice works
+      
+      Dice easy = new Dice("easy");
+      Dice medium = new Dice("Medium");
+      Dice hard = new Dice("HARD");
+      
+      for(int i= 0; i < amount; i++)
+      {
+         System.out.println(easy.roll() + " " + medium.roll() + " " + hard.roll());
+      }
+   }
    //arrays to control the difficulty of the dice
    private static final int[] easy = new int[]{1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 6};
    private static final int[] medium = new int[]{1, 2, 3, 4, 5, 6};
@@ -26,15 +39,15 @@ public class Dice
    
    public Dice(String in)
    {
-      if(in.toLowerCase() == "easy") //dice constructor to set difficulty
+      if(in.toLowerCase().equals("easy")) //dice constructor to set difficulty
       {
          dice = easy;
       }
-      else if(in.toLowerCase() == "medium")
+      else if(in.toLowerCase().equals("medium"))
       {
          dice = medium;
       }
-      else if(in.toLowerCase() == "hard")
+      else if(in.toLowerCase().equals("hard"))
       {
          dice = hard;
       }

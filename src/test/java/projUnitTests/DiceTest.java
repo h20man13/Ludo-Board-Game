@@ -21,7 +21,8 @@ public class DiceTest {
    @Test
    public void testDice() 
    {
-      Dice first = new Dice("df;lkjhgs");
+      Dice first = new Dice("df;lkjhgs"); //this will not pass
+      //i just tried putting in a bad input to see if my message displayed
       assertNull(first.roll());
    }
 
