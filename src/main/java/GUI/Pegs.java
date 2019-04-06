@@ -11,9 +11,8 @@
 
 package GUI;
 
-import javafx.scene.paint.Color;
 import Control.coordinates;
-import javafx.scene.effect.ColorAdjust;
+import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 /**
