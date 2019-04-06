@@ -34,11 +34,13 @@ public class Save
        * Line 2
        */
       s.save(t);
-      String[] c = s.get("testSave.txt");
+      /*
+      String[] c = s.get("testSave.txt"); //note save test is another file 
       for(int i = 0; i < c.length; i++)
       {
          System.out.println(c[i]); //should match what is i the file however the file should be deleted after get is used
       }
+      */
       System.out.println(exists("testSave.txt"));//try to see if there is a save available
       //there wont be a save available because we used get which deletes the file
       System.out.print(toString(124345));
