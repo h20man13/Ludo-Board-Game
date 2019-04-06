@@ -11,39 +11,64 @@
 
 package GUI;
 
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import Control.coordinates;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 /**
  * 
  */
 public class Pegs 
 {
-   private double[] moveArray;
-   private GraphicsContext G;
-   private double x;
-   private double y;
-   private double w;
-   private double h;
+   private static Pane p;
+   private static boolean check = false;
+   private coordinates[] moveArray;
+   private coordinates c;
+   private double r;
    private int adress;
    
-   public Pegs(GraphicsContext G, double x, double y, double w, double h)
+   public Pegs(coordinates f, double r, int adress, Color color)
    {
-      this.G= G;
-      this.x = x;
-      this.y = y;
-      this.w = w;
-      this.h = h;
-      adress = -1;
+      if(check) 
+      {
+         c = new coordinates(f.X(), f.Y());
+         this.r = r;
+         Circle co = new Circle(c.X(), c.Y(), r);
+         Circle ct = new Circle(c.X(), c.Y(), r / 2);
+         ct.setStroke(Color.BLACK);
+         co.setStroke(Color.BLACK);
+         ct.setFill(color);
+         co.setFill(color.brighter());
+         this.adress = adress;
+         p.getChildren().add(co);
+         p.getChildren().add(ct);
+      }
+      else
+      {
+         System.err.println("Error: still havent chosen a pane to put the pegs on");
+         System.err.println("or you havent set ");
+      }
    }
-   public void setAdress(int I)
+   public void MovesPossible(coordinates[] f)
    {
-      adress = I;
+      moveArray = f;
    }
    public int getAdress()
    {
       return adress;
    }
-   public void movePeg()
+   public void movePeg(int rolled)
    {
-      
+      int length = moveArray.length;
+      for(int i = adress + 1; i < (rolled + adress) % length; i += i % length)
+      {
+         c.change(moveArray[i].X(), moveArray[i].Y());
+      }
+   }
+   public static void setPane(Pane p)
+   {
+      Pegs.p = p;
+      check = true;
    }
 }
