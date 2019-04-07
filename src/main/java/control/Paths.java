@@ -14,7 +14,7 @@ package control;
 /**
  * 
  */
-public class paths 
+public class Paths 
 {
    private static Coordinates[] main = new Coordinates[]
    {};
