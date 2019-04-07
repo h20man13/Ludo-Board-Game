@@ -33,31 +33,9 @@ public class Main extends Application
    public void start(Stage stage) throws Exception 
    {
       Pane p = new Pane();
-      shapes.ChoosePane.InitPane(p);
+      ChoosePane.InitPane(p);
       
       stage.setMaximized(true);
-      /*
-      Rectangle rt = new Rectangle(0, 10, 250, 250);
-      rt.setStroke(Color.BLACK);
-      rt.setFill(Color.RED);
-      
-      Rectangle lt = new Rectangle(375, 10, 250, 250);
-      lt.setStroke(Color.BLACK);
-      lt.setFill(Color.GREEN);
-      
-      Rectangle rb = new Rectangle(0, 385, 250, 250);
-      rb.setStroke(Color.BLACK);
-      rb.setFill(Color.BLUE);
-      
-      Rectangle lb = new Rectangle(375, 385, 250, 250);
-      lb.setStroke(Color.BLACK);
-      lb.setFill(Color.YELLOW);
-      
-      p.getChildren().add(rt);
-      p.getChildren().add(lt);
-      p.getChildren().add(rb);
-      p.getChildren().add(lb);
-      */
       
       SquareBoard rt = new SquareBoard(new Coordinates(0, 10), 250, Color.RED);
       SquareBoard lt = new SquareBoard(new Coordinates(375, 10), 250, Color.GREEN);
