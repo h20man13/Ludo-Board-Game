@@ -9,17 +9,17 @@
 // Online sources:   (include Web URLs and description of any information used)
 ////////////////////////////////////////////////////////////////////////////////
 
-package Control;
+package control;
 
 /**
  * 
  */
-public class coordinates 
+public class Coordinates 
 {
    private double x;
    private double y;
    
-   public coordinates(double x, double y)
+   public Coordinates(double x, double y)
    {
       this.x = x;
       this.y = y;

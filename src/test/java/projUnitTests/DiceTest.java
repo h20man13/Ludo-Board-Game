@@ -8,7 +8,8 @@ package projUnitTests;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import Control.Dice;
+
+import control.Dice;
 
 /**
  * 
@@ -16,7 +17,7 @@ import Control.Dice;
 public class DiceTest {
 
    /**
-    * Test method for {@link Control.Dice#Dice(java.lang.String)}.
+    * Test method for {@link control.Dice#Dice(java.lang.String)}.
     */
    @Test
    public void testDice() 

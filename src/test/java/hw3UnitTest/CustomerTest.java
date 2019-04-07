@@ -13,7 +13,8 @@ package hw3UnitTest;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import HW3.Customer;
+
+import hw3.Customer;
 
 /**
  * 

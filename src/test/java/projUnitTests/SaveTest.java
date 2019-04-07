@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 import java.io.FileNotFoundException;
 import org.junit.Test;
 
-import Control.Save;
+import control.Save;
 
 /**
  * 
@@ -25,7 +25,7 @@ public class SaveTest
 {
 
    /**
-    * Test method for {@link Control.Save#save(java.lang.String[])}.
+    * Test method for {@link control.Save#save(java.lang.String[])}.
     */
    Save s = new Save("SaveTest.txt");
    @Test
@@ -36,7 +36,7 @@ public class SaveTest
    }
 
    /**
-    * Test method for {@link Control.Save#get()}.
+    * Test method for {@link control.Save#get()}.
     * @throws FileNotFoundException 
     */
    @Test

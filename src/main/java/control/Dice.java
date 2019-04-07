@@ -3,7 +3,7 @@
 // Course:           CSC232B, Spring 2019
 // Authors:          Jacob Bauer
 ////////////////////////////////////////////////////////////////////////////////
-package Control;
+package control;
 
 import java.lang.String;
 import java.util.Random;

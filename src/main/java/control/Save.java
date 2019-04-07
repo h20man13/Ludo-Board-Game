@@ -4,7 +4,7 @@
 // Authors:          Jacob Bauer
 ////////////////////////////////////////////////////////////////////////////////
 
-package Control;
+package control;
 
 import java.io.File;
 import java.io.FileNotFoundException;

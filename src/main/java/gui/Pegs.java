@@ -9,10 +9,10 @@
 // Online sources:   (include Web URLs and description of any information used)
 ////////////////////////////////////////////////////////////////////////////////
 
-package GUI;
+package gui;
 
-import Control.coordinates;
 import javafx.scene.paint.Color;
+import control.Coordinates;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 /**
@@ -22,16 +22,16 @@ public class Pegs
 {
    private static Pane p;
    private static boolean check = false;
-   private coordinates[] moveArray;
-   private coordinates c;
+   private Coordinates[] moveArray;
+   private Coordinates c;
    private double r;
    private int adress;
    
-   public Pegs(coordinates f, double r, int adress, Color color)
+   public Pegs(Coordinates f, double r, int adress, Color color)
    {
       if(check) 
       {
-         c = new coordinates(f.X(), f.Y());
+         c = new Coordinates(f.X(), f.Y());
          this.r = r;
          Circle co = new Circle(c.X(), c.Y(), r);
          Circle ct = new Circle(c.X(), c.Y(), r / 2);
@@ -49,7 +49,7 @@ public class Pegs
          System.err.println("or you havent set ");
       }
    }
-   public void MovesPossible(coordinates[] f)
+   public void MovesPossible(Coordinates[] f)
    {
       moveArray = f;
    }
