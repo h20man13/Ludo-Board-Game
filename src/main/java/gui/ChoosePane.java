@@ -9,7 +9,7 @@
 // Online sources:   (include Web URLs and description of any information used)
 ////////////////////////////////////////////////////////////////////////////////
 
-package shapes;
+package gui;
 import javafx.scene.layout.Pane;
 /**
  * 

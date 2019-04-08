@@ -13,6 +13,7 @@ package shapes;
 
 import javafx.scene.shape.Rectangle;
 import control.Coordinates;
+import gui.ChoosePane;
 import javafx.scene.paint.Color;
 
 /**
@@ -22,17 +23,26 @@ public class SquareBoard extends ChoosePane
 {
    private Rectangle r;
    private Coordinates C;
+   private double hw;
    public SquareBoard(Coordinates C, double hw, Color v)
    {
+      this.hw = hw;
       this.C = new Coordinates(C.X(), C.Y());
       r = new Rectangle(this.C.X(), this.C.Y(), hw, hw);
       r.setStroke(Color.BLACK);
       r.setFill(v);
       getPane().getChildren().add(r);
    }
-   
    public void Move(Coordinates c)
    {
       C.change(c.X(), c.Y());
+   }
+   public Coordinates getCoordinates()
+   {
+      return C;
+   }
+   public double getSize()
+   {
+      return hw;
    }
 }

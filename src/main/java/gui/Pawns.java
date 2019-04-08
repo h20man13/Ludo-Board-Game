@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// File:             Pegs.java
+ // File:             Pegs.java
 // Course:           CSC232B, Spring 2019
 // Authors:          (your name and the names of other members of your group)
 //
@@ -18,7 +18,7 @@ import javafx.scene.shape.Circle;
 /**
  * 
  */
-public class Pegs 
+public class Pawns 
 {
    private static Pane p;
    private static boolean check = false;
@@ -27,7 +27,7 @@ public class Pegs
    private double r;
    private int adress;
    
-   public Pegs(Coordinates f, double r, int adress, Color color)
+   public Pawns(Coordinates f, double r, int adress, Color color)
    {
       if(check) 
       {
@@ -67,7 +67,7 @@ public class Pegs
    }
    public static void setPane(Pane p)
    {
-      Pegs.p = p;
+      Pawns.p = p;
       check = true;
    }
 }
