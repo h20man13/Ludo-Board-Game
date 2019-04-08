@@ -28,7 +28,7 @@ public class CircleBoard extends ChoosePane
       if(check())
       {
          this.R = R;
-         this.C = new Coordinates(C.X() - R, C.Y() - R);
+         this.C = new Coordinates(C.X(), C.Y());
          CC = new Circle(this.C.X(), this.C.Y(), R);
          CC.setStroke(Color.BLACK);
          CC.setFill(g);
@@ -41,11 +41,11 @@ public class CircleBoard extends ChoosePane
    }
    public void Move(Coordinates c)
    {
-      C.change(c.X() - R, c.Y() - R);
+      C.change(c.X(), c.Y());
    }
    public Coordinates getCoordinates()
    {
-      Coordinates c = new Coordinates(C.X() + R, C.Y() + R);
+      Coordinates c = new Coordinates(C.X(), C.Y());
       return c; 
    }
    public double getSize()
