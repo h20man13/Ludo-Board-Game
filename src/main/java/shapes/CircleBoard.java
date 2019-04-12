@@ -13,12 +13,12 @@ package shapes;
 
 import javafx.scene.shape.Circle;
 import control.Coordinates;
-import gui.ChoosePane;
+import gui.BoardPane;
 import javafx.scene.paint.Color;
 /**
  * 
  */
-public class CircleBoard extends ChoosePane
+public class CircleBoard extends BoardPane
 {
    private Circle CC;
    private Coordinates C;

@@ -30,15 +30,14 @@ public class Ludo extends Application
    @Override
    public void start(Stage stage) throws Exception 
    {
-      Pane p = new Pane();
-      ChoosePane.InitPane(p);
+      BoardPane.InitPane(new Pane());
       
       new Board();
       
       //my new classes for creating shapes
       
       BorderPane g = new BorderPane();
-      g.setLeft(p);
+      g.setLeft(BoardPane.getPane());
       
       Scene scene = new Scene(g);
 

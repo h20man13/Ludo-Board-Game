@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
 /**
  * 
  */
-public class ChoosePane 
+public class BoardPane 
 {
    private static Pane p = new Pane();
    private static boolean check = false;
@@ -38,7 +38,7 @@ public class ChoosePane
    {
       if(!check)
       {
-         ChoosePane.p = p;
+         BoardPane.p = p;
          check = true;
       }
       else

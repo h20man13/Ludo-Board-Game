@@ -13,13 +13,13 @@ package shapes;
 
 import javafx.scene.shape.Rectangle;
 import control.Coordinates;
-import gui.ChoosePane;
+import gui.BoardPane;
 import javafx.scene.paint.Color;
 
 /**
  * 
  */
-public class SquareBoard extends ChoosePane
+public class SquareBoard extends BoardPane
 {
    private Rectangle r;
    private Coordinates C;
