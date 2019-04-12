@@ -24,9 +24,9 @@ public class Board
       if(tf)
       {
          SquareBoard lt = new SquareBoard(new Coordinates(10, 10), 250, Color.RED);
-         SquareBoard rt = new SquareBoard(new Coordinates(lt.getSize()/3 + lt.getSize() + lt.getCoordinates().X(), lt.getCoordinates().Y()), lt.getSize(), Color.GREEN);
-         SquareBoard rb = new SquareBoard(new Coordinates(lt.getSize()/3 + lt.getSize() + lt.getCoordinates().X(), lt.getSize()/3 + lt.getSize() + lt.getCoordinates().Y()), lt.getSize(), Color.YELLOW);
-         SquareBoard lb = new SquareBoard(new Coordinates(lt.getCoordinates().X(), lt.getSize()/3 + lt.getSize() + lt.getCoordinates().Y()), lt.getSize(), Color.BLUE);
+         SquareBoard rt = new SquareBoard(new Coordinates(lt.getSize()/2 + lt.getSize() + lt.getCoordinates().X(), lt.getCoordinates().Y()), lt.getSize(), Color.GREEN);
+         SquareBoard rb = new SquareBoard(new Coordinates(lt.getSize()/2 + lt.getSize() + lt.getCoordinates().X(), lt.getSize()/2 + lt.getSize() + lt.getCoordinates().Y()), lt.getSize(), Color.YELLOW);
+         SquareBoard lb = new SquareBoard(new Coordinates(lt.getCoordinates().X(), lt.getSize()/2 + lt.getSize() + lt.getCoordinates().Y()), lt.getSize(), Color.BLUE);
       
          CircleBoard ltrt = new CircleBoard(new Coordinates(lt.getSize()/3 + lt.getCoordinates().X(), lt.getSize()/3 + lt.getCoordinates().Y()), lt.getSize()/9, Color.WHITE);
          CircleBoard ltlt = new CircleBoard(new Coordinates((lt.getSize() - lt.getSize()/3) + lt.getCoordinates().X(), lt.getSize()/3 + lt.getCoordinates().Y()), lt.getSize()/9, Color.WHITE);

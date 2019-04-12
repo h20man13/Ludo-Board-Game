@@ -30,21 +30,21 @@ public class Ludo extends Application
    @Override
    public void start(Stage stage) throws Exception 
    {
-      BoardPane.InitPane(new Pane());
+      BoardPane.InitPane(new Pane()); //sets pane as the boardpane
       
-      new Board();
+      new Board(); //creates board
       
       //my new classes for creating shapes
       
-      BorderPane g = new BorderPane();
+      BorderPane g = new BorderPane(); //places pane in boarderPane
       g.setLeft(BoardPane.getPane());
       
       Scene scene = new Scene(g);
 
-      stage.setScene(scene);
-      stage.setTitle("LUDO");
-      stage.setMaximized(true);
-      stage.show();
+      stage.setScene(scene); //sets scene as Scene
+      stage.setTitle("LUDO"); //title is ludo
+      stage.setMaximized(true); //set it to full screen with a window
+      stage.show(); //show the stage
       
    }
 }
