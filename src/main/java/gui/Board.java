@@ -18,35 +18,24 @@ import javafx.scene.paint.Color;
  */
 public class Board 
 {
+   private static SquareBoard[] MainSquares = new SquareBoard[4];
+   public static CircleBoard[] StartingLocations = new CircleBoard[16];
    private boolean tf = true;
    public Board()
    {
       if(tf)
       {
-         SquareBoard lt = new SquareBoard(new Coordinates(10, 10), 250, Color.RED);
-         SquareBoard rt = new SquareBoard(new Coordinates(lt.getSize()/2 + lt.getSize() + lt.getCoordinates().X(), lt.getCoordinates().Y()), lt.getSize(), Color.GREEN);
-         SquareBoard rb = new SquareBoard(new Coordinates(lt.getSize()/2 + lt.getSize() + lt.getCoordinates().X(), lt.getSize()/2 + lt.getSize() + lt.getCoordinates().Y()), lt.getSize(), Color.YELLOW);
-         SquareBoard lb = new SquareBoard(new Coordinates(lt.getCoordinates().X(), lt.getSize()/2 + lt.getSize() + lt.getCoordinates().Y()), lt.getSize(), Color.BLUE);
-      
-         CircleBoard ltrt = new CircleBoard(new Coordinates(lt.getSize()/3 + lt.getCoordinates().X(), lt.getSize()/3 + lt.getCoordinates().Y()), lt.getSize()/9, Color.WHITE);
-         CircleBoard ltlt = new CircleBoard(new Coordinates((lt.getSize() - lt.getSize()/3) + lt.getCoordinates().X(), lt.getSize()/3 + lt.getCoordinates().Y()), lt.getSize()/9, Color.WHITE);
-         CircleBoard ltrb = new CircleBoard(new Coordinates(lt.getSize()/3 + lt.getCoordinates().X(), lt.getCoordinates().Y() + lt.getSize() - lt.getSize()/3), lt.getSize()/9, Color.WHITE);
-         CircleBoard ltlb = new CircleBoard(new Coordinates((lt.getSize() - lt.getSize()/3) + lt.getCoordinates().X(), lt.getCoordinates().Y() + lt.getSize() - lt.getSize()/3), lt.getSize()/9, Color.WHITE);
-         
-         CircleBoard rtrt = new CircleBoard(new Coordinates(rt.getSize()/3 + rt.getCoordinates().X(), rt.getSize()/3 + rt.getCoordinates().Y()), rt.getSize()/9, Color.WHITE);
-         CircleBoard rtlt = new CircleBoard(new Coordinates((rt.getSize() - rt.getSize()/3) + rt.getCoordinates().X(), rt.getSize()/3 + rt.getCoordinates().Y()), rt.getSize()/9, Color.WHITE);
-         CircleBoard rtrb = new CircleBoard(new Coordinates(rt.getSize()/3 + rt.getCoordinates().X(), rt.getCoordinates().Y() + rt.getSize() - rt.getSize()/3), rt.getSize()/9, Color.WHITE);
-         CircleBoard rtlb = new CircleBoard(new Coordinates((rt.getSize() - rt.getSize()/3) + rt.getCoordinates().X(), rt.getCoordinates().Y() + rt.getSize() - rt.getSize()/3), rt.getSize()/9, Color.WHITE);
-         
-         CircleBoard lbrt = new CircleBoard(new Coordinates(lb.getSize()/3 + lb.getCoordinates().X(), lb.getSize()/3 + lb.getCoordinates().Y()), lb.getSize()/9, Color.WHITE);
-         CircleBoard lblt = new CircleBoard(new Coordinates((lb.getSize() - lb.getSize()/3) + lb.getCoordinates().X(), lb.getSize()/3 + lb.getCoordinates().Y()), lb.getSize()/9, Color.WHITE);
-         CircleBoard lbrb = new CircleBoard(new Coordinates(lb.getSize()/3 + lb.getCoordinates().X(), lb.getCoordinates().Y() + lb.getSize() - lb.getSize()/3), lb.getSize()/9, Color.WHITE);
-         CircleBoard lblb = new CircleBoard(new Coordinates((lb.getSize() - lb.getSize()/3) + lb.getCoordinates().X(), lb.getCoordinates().Y() + lb.getSize() - lb.getSize()/3), lb.getSize()/9, Color.WHITE);
-         
-         CircleBoard rbrt = new CircleBoard(new Coordinates(rb.getSize()/3 + rb.getCoordinates().X(), rb.getSize()/3 + rb.getCoordinates().Y()), rb.getSize()/9, Color.WHITE);
-         CircleBoard rblt = new CircleBoard(new Coordinates((rb.getSize() - rb.getSize()/3) + rb.getCoordinates().X(), rb.getSize()/3 + rb.getCoordinates().Y()), rb.getSize()/9, Color.WHITE);
-         CircleBoard rbrb = new CircleBoard(new Coordinates(rb.getSize()/3 + rb.getCoordinates().X(), rb.getCoordinates().Y() + rb.getSize() - rb.getSize()/3), rb.getSize()/9, Color.WHITE);
-         CircleBoard rblb = new CircleBoard(new Coordinates((rb.getSize() - rb.getSize()/3) + rb.getCoordinates().X(), rb.getCoordinates().Y() + rb.getSize() - rb.getSize()/3), rb.getSize()/9, Color.WHITE);
+         MainSquares[0] = new SquareBoard(new Coordinates(10, 10), 250, Color.RED);
+         MainSquares[1] = new SquareBoard(new Coordinates(MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().X(), MainSquares[0].getCoordinates().Y()), MainSquares[0].getSize(), Color.GREEN);
+         MainSquares[2] = new SquareBoard(new Coordinates(MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().X(), MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().Y()), MainSquares[0].getSize(), Color.YELLOW);
+         MainSquares[3] = new SquareBoard(new Coordinates(MainSquares[0].getCoordinates().X(), MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().Y()), MainSquares[0].getSize(), Color.BLUE);
+         for(int i = 0; i < 16; i += 4)
+         {
+            StartingLocations[i] = new CircleBoard(new Coordinates(MainSquares[i/4].getSize()/3 + MainSquares[i/4].getCoordinates().X(), MainSquares[i/4].getSize()/3 + MainSquares[i/4].getCoordinates().Y()), MainSquares[i/4].getSize()/9, Color.WHITE);
+            StartingLocations[i + 1] = new CircleBoard(new Coordinates((MainSquares[i/4].getSize() - MainSquares[i/4].getSize()/3) + MainSquares[i/4].getCoordinates().X(), MainSquares[i/4].getSize()/3 + MainSquares[i/4].getCoordinates().Y()), MainSquares[i/4].getSize()/9, Color.WHITE);
+            StartingLocations[i + 2] = new CircleBoard(new Coordinates(MainSquares[i/4].getSize()/3 + MainSquares[i/4].getCoordinates().X(), MainSquares[i/4].getCoordinates().Y() + MainSquares[i/4].getSize() - MainSquares[i/4].getSize()/3), MainSquares[i/4].getSize()/9, Color.WHITE);
+            StartingLocations[i + 3] = new CircleBoard(new Coordinates((MainSquares[i/4].getSize() - MainSquares[i/4].getSize()/3) + MainSquares[i/4].getCoordinates().X(), MainSquares[i/4].getCoordinates().Y() + MainSquares[i/4].getSize() - MainSquares[i/4].getSize()/3), MainSquares[i/4].getSize()/9, Color.WHITE);
+         }
          tf = false;
       }
       else
