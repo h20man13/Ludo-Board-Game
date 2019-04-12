@@ -14,6 +14,7 @@ package gui;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 /**
@@ -36,7 +37,8 @@ public class Ludo extends Application
       
       //my new classes for creating shapes
       
-      Group g = new Group(p);
+      BorderPane g = new BorderPane();
+      g.setLeft(p);
       
       Scene scene = new Scene(g);
 
