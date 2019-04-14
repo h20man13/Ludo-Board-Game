@@ -16,7 +16,7 @@ import control.Coordinates;
 /**
  * 
  */
-public class Pawn
+public class Token
 {
    private CircleBoard inside;
    private CircleBoard outside;
@@ -25,7 +25,7 @@ public class Pawn
    private double r;
    private int adress;
    
-   public Pawn(Coordinates c, double r, Color color)
+   public Token(Coordinates c, double r, Color color)
    {
          this.c = c;
          this.r = r;
