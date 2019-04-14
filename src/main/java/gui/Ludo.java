@@ -12,7 +12,6 @@
 package gui;
 
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -32,7 +31,7 @@ public class Ludo extends Application
    {
       BoardPane.InitPane(new Pane()); //sets pane as the boardpane
       
-      new Board(10, 10, 250); //creates board
+      new Board(10, 10, 50); //creates board
       
       //my new classes for creating shapes
       

@@ -18,21 +18,21 @@ import javafx.scene.paint.Color;
 /**
  * 
  */
-public class CircleBoard extends BoardPane
+public class CircleBoard
 {
    private Circle CC;
    private Coordinates C;
    private double R;
    public CircleBoard(Coordinates C, double R, Color g)
    {
-      if(check())
+      if(BoardPane.check())
       {
          this.R = R;
          this.C = new Coordinates(C.X(), C.Y());
          CC = new Circle(this.C.X(), this.C.Y(), R);
          CC.setStroke(Color.BLACK);
          CC.setFill(g);
-         getPane().getChildren().add(CC);
+         BoardPane.getPane().getChildren().add(CC);
       }
       else
       {

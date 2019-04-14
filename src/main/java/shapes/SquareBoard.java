@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 /**
  * 
  */
-public class SquareBoard extends BoardPane
+public class SquareBoard
 {
    private Rectangle r;
    private Coordinates C;
@@ -31,7 +31,7 @@ public class SquareBoard extends BoardPane
       r = new Rectangle(this.C.X(), this.C.Y(), hw, hw);
       r.setStroke(Color.BLACK);
       r.setFill(v);
-      getPane().getChildren().add(r);
+      BoardPane.getPane().getChildren().add(r);
    }
    public void Move(Coordinates c)
    {

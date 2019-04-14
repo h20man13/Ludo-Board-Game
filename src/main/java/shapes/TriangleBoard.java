@@ -19,7 +19,7 @@ import java.lang.String;
 /**
  * 
  */
-public class TriangleBoard extends BoardPane
+public class TriangleBoard
 {
    private Coordinates C;
    private double width;
@@ -44,7 +44,7 @@ public class TriangleBoard extends BoardPane
           );
          triangle.setStroke(Color.BLACK);
          triangle.setFill(c);
-         getPane().getChildren().add(triangle);
+         BoardPane.getPane().getChildren().add(triangle);
        }
       else if(direction.toLowerCase().equals("down"))
       {
@@ -58,7 +58,7 @@ public class TriangleBoard extends BoardPane
          );
          triangle.setStroke(Color.BLACK);
          triangle.setFill(c);
-         getPane().getChildren().add(triangle);
+         BoardPane.getPane().getChildren().add(triangle);
       }
       else if(direction.toLowerCase().equals("left"))
       {
@@ -72,7 +72,7 @@ public class TriangleBoard extends BoardPane
          );
          triangle.setStroke(Color.BLACK);
          triangle.setFill(c);
-         getPane().getChildren().add(triangle);
+         BoardPane.getPane().getChildren().add(triangle);
       }
       else if(direction.toLowerCase().equals("right"))
       {
@@ -86,7 +86,7 @@ public class TriangleBoard extends BoardPane
          );
          triangle.setStroke(Color.BLACK);
          triangle.setFill(c);
-         getPane().getChildren().add(triangle);
+         BoardPane.getPane().getChildren().add(triangle);
       }
       else
       {
