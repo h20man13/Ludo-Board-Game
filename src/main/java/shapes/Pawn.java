@@ -9,15 +9,14 @@
 // Online sources:   (include Web URLs and description of any information used)
 ////////////////////////////////////////////////////////////////////////////////
 
-package gui;
+package shapes;
 
 import javafx.scene.paint.Color;
 import control.Coordinates;
-import shapes.*;
 /**
  * 
  */
-public class Pawn extends Board
+public class Pawn
 {
    private CircleBoard inside;
    private CircleBoard outside;
@@ -26,11 +25,11 @@ public class Pawn extends Board
    private double r;
    private int adress;
    
-   public Pawn(Coordinates c, double r, int adress, Color color)
+   public Pawn(Coordinates c, double r, Color color)
    {
          this.c = c;
          this.r = r;
-         outside = new CircleBoard(c, r, color.brighter());
+         outside = new CircleBoard(c, r, color.darker());
          inside = new CircleBoard(c, r/2, color);
    }
    public void MovesPossible(SquareBoard[] f)
@@ -40,5 +39,9 @@ public class Pawn extends Board
    public int getAdress()
    {
       return adress;
+   }
+   public void setAdress(int number)
+   {
+      adress = number;
    }
 }
