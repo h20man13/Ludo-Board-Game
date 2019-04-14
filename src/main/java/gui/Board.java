@@ -39,8 +39,9 @@ public class Board
          }
          endingLocations[0] = new TriangleBoard(new Coordinates(MainSquares[0].getCoordinates().X() + MainSquares[0].getSize(),MainSquares[0].getCoordinates().Y() + MainSquares[0].getSize()/4 + MainSquares[0].getSize()), MainSquares[0].getSize()/2, MainSquares[0].getSize()/4, "right", Color.RED);
          endingLocations[1] = new TriangleBoard(new Coordinates(MainSquares[0].getCoordinates().X() + MainSquares[0].getSize() + MainSquares[0].getSize()/4, MainSquares[0].getCoordinates().Y() + MainSquares[0].getSize()), MainSquares[0].getSize()/2, MainSquares[0].getSize()/4, "down", Color.GREEN);
-         endingLocations[3] = new TriangleBoard(new Coordinates(MainSquares[2].getCoordinates().X() + MainSquares[2].getSize(),MainSquares[2].getCoordinates().Y() + MainSquares[2].getSize()/4 + MainSquares[2].getSize()), MainSquares[2].getSize()/2, MainSquares[2].getSize()/4, "left", Color.YELLOW);
-         endingLocations[2] = new TriangleBoard(new Coordinates(MainSquares[2].getCoordinates().X() + MainSquares[2].getSize() + MainSquares[2].getSize()/4, MainSquares[2].getCoordinates().Y() + MainSquares[2].getSize()), MainSquares[2].getSize()/2, MainSquares[2].getSize()/4, "right", Color.BLUE);
+         endingLocations[2] = new TriangleBoard(new Coordinates(MainSquares[2].getCoordinates().X() + MainSquares[2].getSize() + MainSquares[2].getSize()/4, MainSquares[2].getCoordinates().Y()), MainSquares[2].getSize()/2, MainSquares[2].getSize()/4, "up", Color.BLUE);
+         endingLocations[3] = new TriangleBoard(new Coordinates(MainSquares[2].getCoordinates().X() + MainSquares[2].getSize() + MainSquares[2].getSize()/2,MainSquares[2].getCoordinates().Y() - MainSquares[2].getSize()/4), MainSquares[2].getSize()/2, MainSquares[2].getSize()/4, "left", Color.YELLOW); //creates the triangles
+         
       }
       else
       {
