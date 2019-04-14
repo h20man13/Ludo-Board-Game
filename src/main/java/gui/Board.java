@@ -42,7 +42,7 @@ public class Board
          endingLocations[2] = new TriangleBoard(new Coordinates(MainSquares[2].getCoordinates().X() + MainSquares[2].getSize() + MainSquares[2].getSize()/4, MainSquares[2].getCoordinates().Y()), MainSquares[2].getSize()/2, MainSquares[2].getSize()/4, "up", Color.BLUE);
          endingLocations[3] = new TriangleBoard(new Coordinates(MainSquares[2].getCoordinates().X() + MainSquares[2].getSize() + MainSquares[2].getSize()/2,MainSquares[2].getCoordinates().Y() - MainSquares[2].getSize()/4), MainSquares[2].getSize()/2, MainSquares[2].getSize()/4, "left", Color.YELLOW); //creates the triangles
          
-         Pawn f = new Pawn(StartingLocations[0].getCoordinates(), StartingLocations[0].getSize()/2, Color.RED);
+         
          
       }
       else
