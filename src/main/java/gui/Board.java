@@ -54,11 +54,11 @@ public class Board
          genSpaces(new Coordinates(MainPath[26].getCoordinates().X() - MainPath[26].getSize(), MainPath[26].getCoordinates().Y()), 2, MainPath, 27, "left", Color.WHITE);
          MainPath[29] = new SquareBoard(new Coordinates(MainPath[28].getCoordinates().X(), MainPath[28].getCoordinates().Y() - MainPath[28].getSize()), MainPath[28].getSize(), Color.BLUE);
          genSpaces(new Coordinates(MainPath[29].getCoordinates().X(), MainPath[29].getCoordinates().Y() - MainPath[29].getSize()), 4, MainPath, 30, "up", Color.WHITE);
-         genSpaces(new Coordinates(MainSquares[2].getCoordinates().X() + MainSquares[2].getSize(), MainSquares[2].getCoordinates().Y() - MainPath[33].getSize()), 6, MainPath, 34, "left", Color.WHITE);
+         genSpaces(new Coordinates(MainSquares[2].getCoordinates().X() + MainSquares[2].getSize() - MainPath[33].getSize(), MainSquares[2].getCoordinates().Y() - MainPath[33].getSize()), 6, MainPath, 34, "left", Color.WHITE);
          genSpaces(new Coordinates(MainPath[39].getCoordinates().X(), MainPath[39].getCoordinates().Y() - MainPath[39].getSize()), 2, MainPath, 40, "up", Color.WHITE);
          MainPath[42] = new SquareBoard(new Coordinates(MainPath[41].getCoordinates().X() + MainPath[41].getSize(), MainPath[41].getCoordinates().Y()), MainPath[41].getSize(), Color.RED);
          genSpaces(new Coordinates(MainPath[42].getCoordinates().X() + MainPath[42].getSize(), MainPath[42].getCoordinates().Y()), 4, MainPath, 43, "right", Color.WHITE);
-         genSpaces(new Coordinates(MainSquares[1].getCoordinates().X() + MainSquares[1].getSize(), MainSquares[1].getCoordinates().Y() + MainSquares[1].getSize() - MainPath[46].getSize()), 5, MainPath, 47, "up", Color.WHITE);  
+         genSpaces(new Coordinates(MainSquares[0].getCoordinates().X() + MainSquares[0].getSize(), MainSquares[0].getCoordinates().Y() + MainSquares[0].getSize() - MainPath[46].getSize()), 5, MainPath, 47, "up", Color.WHITE);  
       }
       else
       {
