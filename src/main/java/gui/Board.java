@@ -13,6 +13,8 @@ package gui;
 import shapes.*;
 import control.Coordinates;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import gui.BoardPane;
 /**
  * 
  */
@@ -31,10 +33,11 @@ public class Board
    {
       if(tf)
       {
-         MainSquares[0] = new SquareBoard(new Coordinates(offsetx, offsety), size, Color.RED);
+         MainSquares[0] = new SquareBoard(new Coordinates(offsetx, offsety), size * 2 / 5, Color.RED);
          MainSquares[1] = new SquareBoard(new Coordinates(MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().X(), MainSquares[0].getCoordinates().Y()), MainSquares[0].getSize(), Color.GREEN);
          MainSquares[2] = new SquareBoard(new Coordinates(MainSquares[0].getCoordinates().X(), MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().Y()), MainSquares[0].getSize(), Color.BLUE);
          MainSquares[3] = new SquareBoard(new Coordinates(MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().X(), MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().Y()), MainSquares[0].getSize(), Color.YELLOW);
+         
          
          for(int i = 0; i < 16; i += 4)
          {

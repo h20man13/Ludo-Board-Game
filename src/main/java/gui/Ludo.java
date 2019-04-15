@@ -31,7 +31,7 @@ public class Ludo extends Application
    {
       BoardPane.InitPane(new Pane()); //sets pane as the boardpane
       
-      new Board(10, 10, 50); //creates board
+      new Board(10, 10, 600); //creates board
       
       //my new classes for creating shapes
       
