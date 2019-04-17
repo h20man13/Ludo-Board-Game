@@ -23,7 +23,7 @@ import java.time.LocalTime;
 public class Customer
 {
   /**
-   <code>Constructor</code> for the class customer
+   Constructor for the class customer
    @param firstName First name of the customer object
    @param lastName Last name of the customer object
    @param mI Middle initial of the customer object
@@ -41,16 +41,16 @@ public class Customer
   }
   /**
    <code>toString</code> is a method to convert the owning objects fields into a string representation taking up multiple lines
-   @return s  returns 6 lines of code with descriptios of each line listed below:
-   Line 1) "Customer:"
-   Line 2) "    Firstname: (<code> firstName </code>)"
-   Line 3) "    Lastname: (<code> lastName </code>)"
-   Line 4) "    Middal initial: (<code> mI </code>)" 
-   Line 5) "    Age: (<code> age </code>)"
-   Line 6) "    Arrival time: (<code> arrivalTime </code>)"
-   Line 7) "    Departure time: (rest as followed)
-   if <code>gone</code> = true then add to string (<code>departureTime</code>)  
-   if <code>gone</code> = false thenad to string (<code>"the person has not departed yet"</code>)"
+   @return s  returns 6 lines of code with descriptions of each line listed below:
+   Line 1) "Customer:"<br>
+   Line 2) "    Firstname: (firstName<)" <br>
+   Line 3) "    Lastname: (lastName)" <br>
+   Line 4) "    Middal initial:(mI)"<br>
+   Line 5) "    Age: (age)" <br>
+   Line 6) "    Arrival time: (arrivalTime)"<br>
+   Line 7) "    Departure time: (rest as followed)<br>
+   if gone = true then add to string (departureTime)<br>
+   if gone = false then add to string "the person has not departed yet"
   */
   public String toString()
   {

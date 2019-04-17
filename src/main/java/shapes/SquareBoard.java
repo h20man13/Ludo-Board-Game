@@ -17,13 +17,19 @@ import gui.BoardPane;
 import javafx.scene.paint.Color;
 
 /**
- * 
+ * This class was created to create a square on the pane
  */
 public class SquareBoard
 {
    private Rectangle r;
    private Coordinates C;
    private double hw;
+   /**
+    * The constructor constructs the Square
+    * @param C the coordinates
+    * @param hw the height and width
+    * @param v the color
+    */
    public SquareBoard(Coordinates C, double hw, Color v)
    {
       this.hw = hw;
@@ -33,14 +39,25 @@ public class SquareBoard
       r.setFill(v);
       BoardPane.getPane().getChildren().add(r);
    }
+   /**
+    * @param c
+    */
    public void Move(Coordinates c)
    {
       C.change(c.X(), c.Y());
    }
+   /**
+    * returns the Coordinates of the upper left corner of the square
+    * @return the coordinates of the square
+    */
    public Coordinates getCoordinates()
    {
       return C;
    }
+   /**
+    * 
+    * @return The hw of the square
+    */
    public double getSize()
    {
       return hw;

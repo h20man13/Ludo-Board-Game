@@ -10,9 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import java.lang.StringBuilder;
 /**
- * This class was designed to create a save file The user uses the constructor to create the file based off of the name given
+ * This class was designed to create a save file.<br> The user uses the constructor to create the file based off of the name given<br>
  * Then the save method is used to convert a String array into the save format. Each cell in the array is a line on the file.
  * Then the get method is used to retrieve the data back into an String array. I also included a method to check if the file is empty
  * and a method to change a string of numerical values into an int. 
@@ -22,8 +21,8 @@ public class Save // the file format is as followed the first line printed in to
    private File f;
    public static void main(String[] args) throws FileNotFoundException //main method to 
    {
-      System.out.println(toInt("123456"));
-      System.out.println(toInt("2") + toInt("3"));
+      System.out.println(toDouble("123456.88"));
+      System.out.println(toDouble("2") + toDouble(".333333"));
       //should print out the same thing inputed
       Save s = new Save("testSave.txt");
       String[] t = new String[]{"Line 1","Line 2"};
@@ -43,7 +42,7 @@ public class Save // the file format is as followed the first line printed in to
       System.out.println(exists("testSave.txt"));//try to see if there is a save available
       //there should be a save available under this name because lines 37 - 41 were commented out
       //if you uncomment them the get method will delete the file at the end
-      System.out.print(toString(124345));
+      System.out.print(toString(124345.9845));
    }
    public Save(String filename)
    {
@@ -60,12 +59,18 @@ public class Save // the file format is as followed the first line printed in to
       }
       pw.close();
    }
+   /**
+    * The get method is used in order to retrieve a save state from a particular file
+    * @param fName
+    * @return gets a save state and returns it in the form it was entered a String[](each line is its own element>
+    * @throws FileNotFoundException
+    */
    public String[] get(String fName) throws FileNotFoundException
    {
       if(exists(fName))
       {
          Scanner sc = new Scanner(f); //create scanner
-         int lines = toInt(sc.nextLine()); //scan line 1 representing the number of lines that need to be scanned
+         int lines = (int)toDouble(sc.nextLine()); //scan line 1 representing the number of lines that need to be scanned
          String[] l = new String[lines]; //create array the size of the first line entered into the file
          for(int i = 0; i < lines; i++)
          {
@@ -82,33 +87,48 @@ public class Save // the file format is as followed the first line printed in to
          return f;
       }
    }
+   /**
+    * This method checks if the file exists
+    * @param filename which is the name of the file name in the form of a string
+    * @return whether the file exists
+    */
    public static boolean exists(String filename) //check if the file exists
    {
       File a = new File(filename);
       return a.exists();
    }
-   public static int toInt(String s)
+   /**
+    * Turns a string of numbers into a int
+    * @param s is a string input
+    * @return a double representation of a string
+    */
+   public static double toDouble(String s)
    {
       int tenvar = 1;
       int length = s.length() - 1;
-      int awnser = 0;
+      double awnser = 0;
       for(int i = length; i >= 0; i--)
       {
-         awnser += (((int)s.charAt(i)) - (int)'0') * tenvar;
-         tenvar *= 10;
+         if(s.charAt(i) == '.')
+         {
+            awnser /= tenvar;
+            tenvar = 1;
+         }
+         else
+         {
+            awnser += (((int)s.charAt(i)) - (int)'0') * tenvar;
+            tenvar *= 10;
+         }
       }
       return awnser;
    }
-   public static String toString(int I) //converts int to a string
+   /**
+    * Returns a String representation of a double good for inserting strings into arrays
+    * @param I a double input
+    * @return String that is a representation of a double
+    */
+   public static String toString(double I) //converts a double to a string
    {
-      int count = 0;
-      StringBuilder awnser = new StringBuilder("");
-      while(I > 0)
-      {
-         awnser.insert(count, (char)((I % 10) + ((int)'0')));
-         I /= 10;
-         count++;
-      }
-      return awnser.reverse().toString();
+      return "" + I;
    }
 }

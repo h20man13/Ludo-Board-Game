@@ -17,7 +17,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 /**
- * 
+ * This is the main class to create all the graphics and run the game
+ * @author Jacob Bauer
  */
 public class Ludo extends Application
 {

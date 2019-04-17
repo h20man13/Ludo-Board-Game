@@ -9,9 +9,10 @@ import java.lang.String;
 import java.util.Random;
 
 /**
- * This class is a dice class in our game we want to have a cpu and we will choose their difficulty
- * The cpus difficulty will create a curbed dice more low numbers for easy more high numbers for hard
+ * The Dice class in our game we want to have a CPU and we will choose their difficulty.<br>
+ * The CPU's difficulty will create a curbed dice more low numbers for easy more high numbers for hard.<br>
  * There is one method roll which rolls the dice
+ * @author Jacob Bauer <jacobbauer_2021@depauw.edu>
  */
 public class Dice 
 {
@@ -36,7 +37,10 @@ public class Dice
    //Dice objects needed to make a proper dice
    private int[] dice;
    private Random r;
-   
+   /**
+    * The Dice constructor 
+    * @param in is a parameter that is just a string that must determine the difficulty of the dice (Easy, Medium, or Hard)
+    */
    public Dice(String in)
    {
       if(in.toLowerCase().equals("easy")) //dice constructor to set difficulty
@@ -57,7 +61,10 @@ public class Dice
       }
       r = new Random();
    }
-   //method to roll the dice
+   /**
+    * The roll method rolls a synthetic dice that was created in the constructor
+    * @return A role of the dice that is constructed
+    */
    public int roll()
    {
       return dice[r.nextInt(dice.length)];

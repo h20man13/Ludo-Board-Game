@@ -12,7 +12,7 @@ package hw3;
 ////////////////////////////////////////////////////////////////////////////////
 
 /**                                                                                                                                                                                                                                           
-   The <code>CustomerTestDriver</code> class is used to test the customer class                                                                                                                                                                                
+   The CustomerTestDriver class is used to test the customer class                                                                                                                                                                                
    @author Jacob Bauer <jacobbauer_2021@depauw.edu>                                                                                                                                                                                           
 */
 

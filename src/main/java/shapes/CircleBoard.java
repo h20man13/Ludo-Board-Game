@@ -1,12 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File:             CircleBoard.java
 // Course:           CSC232B, Spring 2019
-// Authors:          (your name and the names of other members of your group)
-//
-// Acknowledgements: (list anyone else other than your instructor who helped)
-//                   (describe in detail the the ideas and help they provided)
-//
-// Online sources:   (include Web URLs and description of any information used)
+// Authors:          Jacob Bauer, 
+// Online sources:   Stack OverFlow - I used this to figure out how to use a pane to display shapes
 ////////////////////////////////////////////////////////////////////////////////
 
 package shapes;
@@ -16,13 +12,20 @@ import control.Coordinates;
 import gui.BoardPane;
 import javafx.scene.paint.Color;
 /**
- * 
+ * This class is used to create a circle on the initialized pane
+ * @author Jacob Bauer
  */
 public class CircleBoard
 {
    private Circle CC;
    private Coordinates C;
    private double R;
+   /**
+    * This constructor is used to create a circle on the pane specified with black outline
+    * @param C This will specify the coordinates to spawn the Circle
+    * @param R - specifies the radius of the circle
+    * @param g - specifies the color of the circle
+    */
    public CircleBoard(Coordinates C, double R, Color g)
    {
       if(BoardPane.check())
@@ -43,11 +46,18 @@ public class CircleBoard
    {
       C.change(c.X(), c.Y());
    }
+   /**
+    * This method receives the coordinates of the specified circle
+    * @return the coordinates
+    */
    public Coordinates getCoordinates()
    {
       Coordinates c = new Coordinates(C.X(), C.Y());
       return c; 
    }
+   /**
+    * @return the radius of the circle
+    */
    public double getSize()
    {
       return R;

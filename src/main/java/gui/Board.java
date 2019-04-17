@@ -1,12 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File:             Board.java
 // Course:           CSC232B, Spring 2019
-// Authors:          (your name and the names of other members of your group)
-//
-// Acknowledgements: (list anyone else other than your instructor who helped)
-//                   (describe in detail the the ideas and help they provided)
-//
-// Online sources:   (include Web URLs and description of any information used)
+// Authors:          Jacob Bauer, 
 ////////////////////////////////////////////////////////////////////////////////
 
 package gui;
@@ -16,7 +11,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import gui.BoardPane;
 /**
- * 
+ * This class was developed to extract away from the Ludo.java <br>File in order to just handle the static objects that dont require event listiners...
+ * The board class also allows the tokens to access the sqare positions on the boards
  */
 public class Board 
 {
@@ -81,6 +77,15 @@ public class Board
          System.err.println("Error: You can only spawn one board per project");
       }
    }
+   /**
+    * This method was created to help make some of the small squares essentially it could make a certain amount of squares in one direction and it could add them to a path
+    * @param start - is the initial coordinates of the first square
+    * @param howmany - is how many squares you want to create
+    * @param Array - what array do you want to add the squares too
+    * @param begin - what position in the array do you want to start creating squares
+    * @param direct - what direction do you want to start replicating squares ("up" "down" "left" "right")
+    * @param color - what color do you want the squares to be
+    */
    private void genSpaces(Coordinates start, int howmany, SquareBoard[] Array, int begin, String direct, Color color)
    {
       for(int i = 0; i < howmany; i++, begin++)

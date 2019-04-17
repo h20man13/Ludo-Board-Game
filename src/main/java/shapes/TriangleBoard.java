@@ -1,12 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File:             TriangleBoard.java
 // Course:           CSC232B, Spring 2019
-// Authors:          (your name and the names of other members of your group)
-//
-// Acknowledgements: (list anyone else other than your instructor who helped)
-//                   (describe in detail the the ideas and help they provided)
-//
-// Online sources:   (include Web URLs and description of any information used)
+// Authors:          Jacob Bauer
 ////////////////////////////////////////////////////////////////////////////////
 
 package shapes;
@@ -17,7 +12,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import java.lang.String;
 /**
- * 
+ * Creates a triangle class for the board
+ * @author Jacob Bauer
  */
 public class TriangleBoard
 {
@@ -26,6 +22,14 @@ public class TriangleBoard
    private double height;
    private Polygon triangle;
    
+   /**
+    * @Constructor that creates the triangle on the board that is positioned according to the middle of the obtuse side
+    * @param C is the coordinates for the triangle
+    * @param width is the width of the triangle
+    * @param height is the height of the triangle
+    * @param the direction the triangle faces up down etc...
+    * @param c is the color of the triangle
+    */
    public TriangleBoard(Coordinates C, double width, double height , String direction, Color c)
    {
       this.C = C;
