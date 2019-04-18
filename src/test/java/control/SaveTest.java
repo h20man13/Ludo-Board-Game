@@ -1,4 +1,4 @@
-package projUnitTests.control;
+package control;
 ////////////////////////////////////////////////////////////////////////////////
 // File:             SaveTest.java
 // Course:           CSC232B, Spring 2019

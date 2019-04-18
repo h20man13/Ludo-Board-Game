@@ -9,7 +9,7 @@
 // Online sources:   (include Web URLs and description of any information used)
 ////////////////////////////////////////////////////////////////////////////////
 
-package projUnitTests.shapes;
+package gui.shapes;
 
 import static org.junit.Assert.*;
 import org.junit.Test;

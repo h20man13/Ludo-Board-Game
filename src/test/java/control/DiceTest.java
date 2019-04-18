@@ -4,7 +4,7 @@
 // Authors:          Jacob Bauer
 ////////////////////////////////////////////////////////////////////////////////
 
-package projUnitTests.control;
+package control;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
