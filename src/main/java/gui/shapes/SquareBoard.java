@@ -9,11 +9,11 @@
 // Online sources:   (include Web URLs and description of any information used)
 ////////////////////////////////////////////////////////////////////////////////
 
-package shapes;
+package gui.shapes;
 
 import javafx.scene.shape.Rectangle;
 import control.Coordinates;
-import gui.BoardPane;
+import gui.board.BoardPane;
 import javafx.scene.paint.Color;
 
 /**

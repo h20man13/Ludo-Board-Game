@@ -9,13 +9,13 @@
 // Online sources:   (include Web URLs and description of any information used)
 ////////////////////////////////////////////////////////////////////////////////
 
-package projUnitTests;
+package projUnitTests.shapes;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
 import control.Coordinates;
-import shapes.CircleBoard;
+import gui.shapes.CircleBoard;
 
 /**
  * 

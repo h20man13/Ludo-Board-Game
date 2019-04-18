@@ -1,11 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////
- // File:             Pegs.java
+ // File:            Pegs.java
 // Course:           CSC232B, Spring 2019
 // Authors:          Jacob Bauer
-// Online sources:   (include Web URLs and description of any information used)
 ////////////////////////////////////////////////////////////////////////////////
 
-package shapes;
+package gui.shapes;
 
 import javafx.scene.paint.Color;
 import control.Coordinates;
@@ -19,6 +18,7 @@ public class Token
    private CircleBoard outside;
    private SquareBoard[] moveArray;
    private Coordinates c;
+   private boolean[] SMorE;
    private double r;
    public int adress;
    /**
@@ -34,6 +34,7 @@ public class Token
          this.r = r;
          outside = new CircleBoard(c, r, color.darker());
          inside = new CircleBoard(c, r/2, color);
+         SMorE = new boolean[]{true, false, false};
    }
    /**
     * This method should assign a new SquareBoard array from the Board class so the token knows which moves are possible

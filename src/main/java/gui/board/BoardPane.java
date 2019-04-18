@@ -4,7 +4,7 @@
 // Authors:          Jacob Bauer
 ////////////////////////////////////////////////////////////////////////////////
 
-package gui;
+package gui.board;
 import javafx.scene.layout.Pane;
 /**
  * The board pane class is a way to specify the pane for all my Board shape classes I created in the project.<br>

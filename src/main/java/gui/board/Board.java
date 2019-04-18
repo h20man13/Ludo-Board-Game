@@ -4,12 +4,12 @@
 // Authors:          Jacob Bauer, 
 ////////////////////////////////////////////////////////////////////////////////
 
-package gui;
-import shapes.*;
+package gui.board;
 import control.Coordinates;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import gui.BoardPane;
+import gui.shapes.CircleBoard;
+import gui.shapes.SquareBoard;
+import gui.shapes.TriangleBoard;
 /**
  * This class was developed to extract away from the Ludo.java <br>File in order to just handle the static objects that dont require event listiners...
  * The board class also allows the tokens to access the sqare positions on the boards
@@ -25,7 +25,7 @@ public class Board
    private static SquareBoard[] finalBlue = new SquareBoard[5];
    private static SquareBoard[] finalYellow = new SquareBoard[5];
    private boolean tf = true;
-   public Board(int offsetx, int offsety, int size)
+   public Board(double offsetx, double offsety, double size)
    {
       if(tf)
       {

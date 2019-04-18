@@ -5,11 +5,11 @@
 // Online sources:   Stack OverFlow - I used this to figure out how to use a pane to display shapes
 ////////////////////////////////////////////////////////////////////////////////
 
-package shapes;
+package gui.shapes;
 
 import javafx.scene.shape.Circle;
 import control.Coordinates;
-import gui.BoardPane;
+import gui.board.BoardPane;
 import javafx.scene.paint.Color;
 /**
  * This class is used to create a circle on the initialized pane

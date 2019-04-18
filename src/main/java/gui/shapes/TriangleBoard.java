@@ -4,10 +4,10 @@
 // Authors:          Jacob Bauer
 ////////////////////////////////////////////////////////////////////////////////
 
-package shapes;
+package gui.shapes;
 
 import control.Coordinates;
-import gui.BoardPane;
+import gui.board.BoardPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import java.lang.String;
