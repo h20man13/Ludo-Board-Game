@@ -17,9 +17,6 @@ import java.lang.String;
  */
 public class TriangleBoard
 {
-   private Coordinates C;
-   private double width;
-   private double height;
    private Polygon triangle;
    
    /**
@@ -32,9 +29,6 @@ public class TriangleBoard
     */
    public TriangleBoard(Coordinates C, double width, double height , String direction, Color c)
    {
-      this.C = C;
-      this.width = width;
-      this.height = height;
       triangle = new Polygon();
       if(direction.toLowerCase().equals("up"))
       {
@@ -95,6 +89,16 @@ public class TriangleBoard
       else
       {
          System.err.println("Couldnt tell what direction you wanted the triangle in");
+         System.exit(0);
       }
+   }
+   public void move(Coordinates c)
+   {
+      triangle.setTranslateX(c.X() - getCoordinates().X());
+      triangle.setTranslateY(c.Y() - getCoordinates().Y());
+   }
+   public Coordinates getCoordinates()
+   {
+      return new Coordinates(triangle.getLayoutX(), triangle.getLayoutY());
    }
 }

@@ -22,8 +22,6 @@ import javafx.scene.paint.Color;
 public class SquareBoard
 {
    private Rectangle r;
-   private Coordinates C;
-   private double hw;
    /**
     * The constructor constructs the Square
     * @param C the coordinates
@@ -32,9 +30,7 @@ public class SquareBoard
     */
    public SquareBoard(Coordinates C, double hw, Color v)
    {
-      this.hw = hw;
-      this.C = new Coordinates(C.X(), C.Y());
-      r = new Rectangle(this.C.X(), this.C.Y(), hw, hw);
+      r = new Rectangle(C.X(), C.Y(), hw, hw);
       r.setStroke(Color.BLACK);
       r.setFill(v);
       BoardPane.getPane().getChildren().add(r);
@@ -44,7 +40,8 @@ public class SquareBoard
     */
    public void Move(Coordinates c)
    {
-      C.change(c.X(), c.Y());
+      r.setTranslateX(c.X() - getCoordinates().X());
+      r.setTranslateY(c.Y() - getCoordinates().Y());
    }
    /**
     * returns the Coordinates of the upper left corner of the square
@@ -52,7 +49,7 @@ public class SquareBoard
     */
    public Coordinates getCoordinates()
    {
-      return C;
+      return new Coordinates(r.getX(), r.getY());
    }
    /**
     * 
@@ -60,6 +57,6 @@ public class SquareBoard
     */
    public double getSize()
    {
-      return hw;
+      return r.getHeight();
    }
 }

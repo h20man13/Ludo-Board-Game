@@ -11,10 +11,13 @@
 
 package gui;
 
+import gui.board.Board;
+import gui.board.BoardPane;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 /**
  * This is the main class to create all the graphics and run the game
@@ -35,9 +38,10 @@ public class Ludo extends Application
       new Board(10, 10, 600); //creates board
       
       //my new classes for creating shapes
-      
+      VBox v = new VBox();
       BorderPane g = new BorderPane(); //places pane in boarderPane
       g.setLeft(BoardPane.getPane());
+      g.setRight(v);
       
       Scene scene = new Scene(g);
 

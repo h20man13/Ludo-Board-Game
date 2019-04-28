@@ -33,7 +33,7 @@ public class Board
          MainSquares[1] = new SquareBoard(new Coordinates(MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().X(), MainSquares[0].getCoordinates().Y()), MainSquares[0].getSize(), Color.GREEN);
          MainSquares[2] = new SquareBoard(new Coordinates(MainSquares[0].getCoordinates().X(), MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().Y()), MainSquares[0].getSize(), Color.BLUE);
          MainSquares[3] = new SquareBoard(new Coordinates(MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().X(), MainSquares[0].getSize()/2 + MainSquares[0].getSize() + MainSquares[0].getCoordinates().Y()), MainSquares[0].getSize(), Color.YELLOW);
-         
+         MainSquares[0].Move(new Coordinates(10, 500));
          
          for(int i = 0; i < 16; i += 4)
          {
@@ -75,6 +75,7 @@ public class Board
       else
       {
          System.err.println("Error: You can only spawn one board per project");
+         System.exit(0);
       }
    }
    /**
