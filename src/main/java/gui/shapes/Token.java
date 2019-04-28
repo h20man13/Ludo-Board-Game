@@ -16,7 +16,6 @@ public class Token
 {
    private CircleBoard inside;
    private CircleBoard outside;
-   private SquareBoard[] moveArray;
    private boolean[] SMorEE;
    public int adress;
    /**
@@ -36,14 +35,7 @@ public class Token
     * This method should assign a new SquareBoard array from the Board class so the token knows which moves are possible
     * @param - f the path to take
     */
-   public void setPath(SquareBoard[] f)
-   {
-      moveArray = f;
-   }
-   public SquareBoard[] getPath()
-   {
-      return moveArray;
-   }
+   
    /**
     * This method gets the current address of the piece in the array
     * @return the address in the moves possible array
@@ -61,9 +53,9 @@ public class Token
      outside.Move(c);
      inside.Move(c);
    }
-   public boolean[] getPathOn()
+   public boolean getPathOn(int i)
    {
-      return SMorEE;
+      return SMorEE[i];
    }
    public void flipPathMarker(int index)
    {

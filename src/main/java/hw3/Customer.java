@@ -60,7 +60,7 @@ public class Customer
     s += ("    Middle initial: " + mI + '\n');
     s += ("    Age: " + age + '\n');
     s += ("    Arrival time: " + arrivalTime + '\n');
-    s += (this.gone) ? ("    Departure Time: " + departureTime) : ("    Departure Time: The person has not departed yet.");
+    s += (this.gone) ? ("     Departure Time: " + departureTime) : ("    Departure Time: The person has not departed yet.");
     return s;
   }
   
