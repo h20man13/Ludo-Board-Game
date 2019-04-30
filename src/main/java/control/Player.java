@@ -21,9 +21,9 @@ public class Player
 {
    private int score;
    private Token[] tokens;
-   private boolean cpu;
+   String cpu;
    private Dice diff;
-   public Player(int s, int tokenAmount, boolean tf, Coordinates[] C, Color c, Dice d)
+   public Player(int s, int tokenAmount, String tf, Coordinates[] C, Color c, Dice d)
    {
       int score = s;
       tokens = new Token[tokenAmount];
@@ -32,7 +32,7 @@ public class Player
          tokens[i] = new Token(C[i], Board.StartingLocations[0].getSize()/2, c);
       }
       cpu = tf;
-      if(tf)
+      if(cpu == "yes")
       {
          diff = d;
       }

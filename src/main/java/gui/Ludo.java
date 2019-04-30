@@ -11,8 +11,16 @@
 
 package gui;
 
+import control.Save;
 import gui.board.Board;
 import gui.board.BoardPane;
+
+import java.awt.Color;
+import java.util.Scanner;
+
+import control.Coordinates;
+import control.Dice;
+import control.Player;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -25,21 +33,174 @@ import javafx.stage.Stage;
  */
 public class Ludo extends Application
 {
+   private static int playerNumber;
+   private static Player[] Players;
+   private static int tokens;
+   
    public static void main(String[] args) 
    {
-      
+      boolean ex = Save.exists("LudoFile");
+      BoardPane.InitPane(new Pane());
+      if(ex)
+      {
+         Scanner s = new Scanner(System.in);
+         System.out.print("There is a save available would you like to resume[Y/N]: ");
+         if(s.nextLine() == "Y")
+         {
+            s.close();
+            Save S = new Save("LudoFile");
+            String[] savedata = S.get();
+            playerNumber = (int)Save.toDouble(savedata[0]);
+            tokens = (int)Save.toDouble(savedata[1]);
+            Players = new Player[playerNumber];
+            String[] yorn = savedata[2].split(" "); //stats to make players
+            String[] PlayersX = savedata[3].split("-");
+            String[] PlayersY = savedata[4].split("-");
+            String[] scores = savedata[5].split(" ");
+            String[] diff = savedata[6].split(" ");
+            Color[] colors = new Color[playerNumber];
+            if(playerNumber == 2)
+            {
+               colors[0] = Color.RED;
+               colors[1] = Color.YELLOW;
+            }
+            else if(playerNumber == 3)
+            {
+               colors[0] = Color.RED;
+               colors[1] = Color.GREEN;
+               colors[2] = Color.BLUE;
+            }
+            else if(playerNumber == 4)
+            {
+               colors[0] = Color.RED;
+               colors[1] = Color.GREEN;
+               colors[2] = Color.BLUE;
+               colors[3] = Color.YELLOW;
+            }
+            else
+            {
+               System.exit(0);
+            }
+            for(int x = 0; x < playerNumber; x++)
+            {
+               String[] playerx = PlayersX[x].split(" ");
+               String[] playery = PlayersY[x].split(" ");
+               Coordinates[] coordinates = new Coordinates[tokens];
+               for(int i = 0; i < tokens; i++)
+               {
+                  coordinates[i] = new Coordinates(Save.toDouble(playerx[i]), Save.toDouble(playery[i]));
+               }
+               Players[x] = new Player(scores[x], tokens, yorn[x], coordinates, colors[x], new Dice(deff[x]));
+            }
+         }
+         else
+         {
+            s.close();
+            ex = false;
+         }
+      }
+      if(!ex)
+      {
+         BoardPane.InitPane(new Pane());
+         Scanner s = new Scanner(System.in);
+         System.out.print("How many players are in this game: ");
+         playerNumber = (int)Save.toDouble(s.nextLine());
+         Color[] colors = new Color[playerNumber];
+         Players = new Player[playerNumber];
+         System.out.print("How many tokens per player: ");
+         tokens = (int)Save.toDouble(s.nextLine());
+         Coordinates[][] starts = new Coordinates[playerNumber][tokens];
+         if(playerNumber == 2)
+         {
+            int start = 0;
+            colors[0] = Color.RED;
+            for(int i = start; i < start + tokens; i++)
+            {
+               starts[0][i] = Board.StartingLocations[i].getCoordinates();
+            }
+            colors[1] = Color.YELLOW;
+            start = 12;
+            for(int i = start; i < start + tokens; i++)
+            {
+               starts[1][i - start] = Board.StartingLocations[i].getCoordinates();
+            }
+         }
+         else if(playerNumber == 3)
+         {
+            colors[0] = Color.RED;
+            int start = 0;
+            for(int i = start; i < start + tokens; i++)
+            {
+               starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
+            }
+            colors[1] = Color.GREEN;
+            start = 4;
+            for(int i = start; i < start + tokens; i++)
+            {
+               starts[1][i - start] = Board.StartingLocations[i].getCoordinates();
+            }
+            colors[2] = Color.YELLOW;
+            start = 12;
+            for(int i = start; i < start + tokens; i++)
+            {
+               starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
+            }
+         }
+         else if(playerNumber == 4)
+         {
+            colors[0] = Color.RED;
+            int start = 0;
+            for(int i = start; i < start + tokens; i++)
+            {
+               starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
+            }
+            colors[1] = Color.GREEN;
+            start = 4;
+            for(int i = start; i < start + tokens; i++)
+            {
+               starts[1][i - start] = Board.StartingLocations[i].getCoordinates();
+            }
+            colors[2] = Color.YELLOW;
+            start = 12;
+            for(int i = start; i < start + tokens; i++)
+            {
+               starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
+            }
+            colors[3] = Color.BLUE;
+            start = 8;
+            for(int i = start; i < start + tokens; i++)
+            {
+               starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
+            }
+         }
+         for(int p = 0; p < playerNumber; p++)
+         {
+            System.out.print("Is player " + p + " a computer[yes/no]: ");
+            String yn = s.nextLine();
+            String dif = "medium";
+            if(yn == "yes")
+            {
+               System.out.print("What Difficulty: ");
+               dif = s.nextLine();
+            }
+            Players[p] = new Player(0, tokens, yn, starts[p], colors[p], new Dice(dif));
+         }
+         s.close();
+      }
       launch(args);
    }
 
    @Override
    public void start(Stage stage) throws Exception 
    {
-      BoardPane.InitPane(new Pane()); //sets pane as the boardpane
+      //sets pane as the boardpane
       
       new Board(10, 10, 600); //creates board
       
       //my new classes for creating shapes
       VBox v = new VBox();
+      HBox top = new HBox();
+      HBox bottom = new HBox();
       BorderPane g = new BorderPane(); //places pane in boarderPane
       g.setLeft(BoardPane.getPane());
       g.setRight(v);

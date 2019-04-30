@@ -65,10 +65,8 @@ public class Save // the file format is as followed the first line printed in to
     * @return gets a save state and returns it in the form it was entered a String[](each line is its own element>
     * @throws FileNotFoundException
     */
-   public String[] get(String fName) throws FileNotFoundException
+   public String[] get() throws FileNotFoundException
    {
-      if(exists(fName))
-      {
          Scanner sc = new Scanner(f); //create scanner
          int lines = (int)toDouble(sc.nextLine()); //scan line 1 representing the number of lines that need to be scanned
          String[] l = new String[lines]; //create array the size of the first line entered into the file
@@ -79,13 +77,6 @@ public class Save // the file format is as followed the first line printed in to
          sc.close();
          f.delete(); //delete file after it is used
          return l;
-      }
-      else
-      {
-         System.err.print("Error: File is unexistant");
-         String[] f = new String[]{};
-         return f;
-      }
    }
    /**
     * This method checks if the file exists
