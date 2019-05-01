@@ -40,9 +40,10 @@ public class Ludo extends Application
       {
          Scanner s = new Scanner(System.in);
          System.out.print("There is a save available would you like to resume[Y/N]: ");
-         if(s.nextLine() == "Y")
+         String ss = s.nextLine();
+         s.close();
+         if(ss.equals("Y"))
          {
-            s.close();
             BoardPane.InitPane(new Pane());
             new Board(10, 10, 600);
             s.close();
@@ -93,7 +94,6 @@ public class Ludo extends Application
          }
          else
          {
-            s.close();
             ex = false;
          }
       }
