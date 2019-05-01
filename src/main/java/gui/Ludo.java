@@ -115,7 +115,7 @@ public class Ludo extends Application
             colors[0] = Color.RED;
             for(int i = start; i < start + tokens; i++)
             {
-               starts[0][i] = Board.StartingLocations[i].getCoordinates();
+               starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
             }
             colors[1] = Color.YELLOW;
             start = 12;
@@ -142,7 +142,7 @@ public class Ludo extends Application
             start = 12;
             for(int i = start; i < start + tokens; i++)
             {
-               starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
+               starts[2][i - start] = Board.StartingLocations[i].getCoordinates();
             }
          }
          else if(playerNumber == 4)
@@ -163,13 +163,13 @@ public class Ludo extends Application
             start = 12;
             for(int i = start; i < start + tokens; i++)
             {
-               starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
+               starts[2][i - start] = Board.StartingLocations[i].getCoordinates();
             }
             colors[3] = Color.BLUE;
             start = 8;
             for(int i = start; i < start + tokens; i++)
             {
-               starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
+               starts[3][i - start] = Board.StartingLocations[i].getCoordinates();
             }
          }
          for(int p = 0; p < playerNumber; p++)
