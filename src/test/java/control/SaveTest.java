@@ -42,7 +42,7 @@ public class SaveTest
    @Test
    public void testGet() throws FileNotFoundException 
    {
-      String[] ss = s.get("SaveTest.txt");
+      String[] ss = s.get();
       String[] actual = new String[]{"Line 1", "Line 2", "7890"};
       for(int i = 0; i < ss.length; i++)
       {

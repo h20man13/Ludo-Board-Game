@@ -25,14 +25,14 @@ public class Player
    private Dice diff;
    public Player(int s, int tokenAmount, String tf, Coordinates[] C, Color c, Dice d)
    {
-      int score = s;
+      score = s;
       tokens = new Token[tokenAmount];
       for(int i = 0; i < tokenAmount; i++)
       {
          tokens[i] = new Token(C[i], Board.StartingLocations[0].getSize()/2, c);
       }
       cpu = tf;
-      if(cpu == "yes")
+      if(cpu.equals("yes"))
       {
          diff = d;
       }

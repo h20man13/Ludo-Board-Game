@@ -11,21 +11,17 @@
 
 package gui;
 
-import control.Save;
-import gui.board.Board;
-import gui.board.BoardPane;
-
-import java.awt.Color;
+import control.*;
+import gui.board.*;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
-
-import control.Coordinates;
-import control.Dice;
-import control.Player;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 /**
  * This is the main class to create all the graphics and run the game
@@ -37,16 +33,18 @@ public class Ludo extends Application
    private static Player[] Players;
    private static int tokens;
    
-   public static void main(String[] args) 
+   public static void main(String[] args) throws FileNotFoundException 
    {
       boolean ex = Save.exists("LudoFile");
-      BoardPane.InitPane(new Pane());
       if(ex)
       {
          Scanner s = new Scanner(System.in);
          System.out.print("There is a save available would you like to resume[Y/N]: ");
          if(s.nextLine() == "Y")
          {
+            s.close();
+            BoardPane.InitPane(new Pane());
+            new Board(10, 10, 600);
             s.close();
             Save S = new Save("LudoFile");
             String[] savedata = S.get();
@@ -90,7 +88,7 @@ public class Ludo extends Application
                {
                   coordinates[i] = new Coordinates(Save.toDouble(playerx[i]), Save.toDouble(playery[i]));
                }
-               Players[x] = new Player(scores[x], tokens, yorn[x], coordinates, colors[x], new Dice(deff[x]));
+               Players[x] = new Player((int)Save.toDouble(scores[x]), tokens, yorn[x], coordinates, colors[x], new Dice(diff[x]));
             }
          }
          else
@@ -102,6 +100,7 @@ public class Ludo extends Application
       if(!ex)
       {
          BoardPane.InitPane(new Pane());
+         new Board(10, 10, 600);
          Scanner s = new Scanner(System.in);
          System.out.print("How many players are in this game: ");
          playerNumber = (int)Save.toDouble(s.nextLine());
@@ -175,10 +174,10 @@ public class Ludo extends Application
          }
          for(int p = 0; p < playerNumber; p++)
          {
-            System.out.print("Is player " + p + " a computer[yes/no]: ");
+            System.out.print("Is player " + (p + 1) + " a computer[yes/no]: ");
             String yn = s.nextLine();
             String dif = "medium";
-            if(yn == "yes")
+            if(yn.equals("yes"))
             {
                System.out.print("What Difficulty: ");
                dif = s.nextLine();
@@ -189,13 +188,12 @@ public class Ludo extends Application
       }
       launch(args);
    }
-
    @Override
    public void start(Stage stage) throws Exception 
    {
       //sets pane as the boardpane
       
-      new Board(10, 10, 600); //creates board
+       //creates board
       
       //my new classes for creating shapes
       VBox v = new VBox();
