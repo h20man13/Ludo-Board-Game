@@ -16,7 +16,7 @@ public class Token
 {
    private CircleBoard inside;
    private CircleBoard outside;
-   private boolean[] SMorEE;
+   private int getPath;
    public int adress;
    /**
     * The constructor is defined so it creates a token which has two circles an outside circle and an inside circle <br>
@@ -25,11 +25,11 @@ public class Token
     * @param r the radius for the outside circle
     * @param color the color of the inside circle
     */
-   public Token(Coordinates c, double r, Color color)
+   public Token(Coordinates c, double r, Color color, int path)
    {
          outside = new CircleBoard(c, r, color.darker());
          inside = new CircleBoard(c, r/2, color);
-         SMorEE = new boolean[]{true, false, false, false};
+         getPath = path;
    }
    /**
     * This method should assign a new SquareBoard array from the Board class so the token knows which moves are possible
@@ -53,19 +53,16 @@ public class Token
      outside.Move(c);
      inside.Move(c);
    }
-   public boolean getPathOn(int i)
-   {
-      return SMorEE[i];
-   }
-   public void flipPathMarker(int index)
-   {
-      if(index < 4)
-      {
-         SMorEE[index] = !SMorEE[index];
-      }
-   }
    public double getSize()
    {
       return outside.getSize();
+   }
+   public Coordinates getCoordinates()
+   {
+      return inside.getCoordinates();
+   }
+   public int getPath()
+   {
+      return getPath;
    }
 }

@@ -19,19 +19,17 @@ import gui.board.Board;
  */
 public class Player 
 {
-   private int score;
    private Token[] tokens;
-   String cpu;
+   private String cpu;
    private Dice diff;
-   public Player(int s, int tokenAmount, String tf, Coordinates[] C, Color c, Dice d)
+   public Player(int tokenAmount, String tf, Coordinates[] C, Color c, Dice d, int[] paths)
    {
-      score = s;
       tokens = new Token[tokenAmount];
       for(int i = 0; i < tokenAmount; i++)
       {
-         tokens[i] = new Token(C[i], Board.StartingLocations[0].getSize()/2, c);
+         tokens[i] = new Token(C[i], Board.StartingLocations[0].getSize()/2, c, paths[i]);
       }
-      cpu = tf;
+      cpu = tf.toLowerCase();
       if(cpu.equals("yes"))
       {
          diff = d;
@@ -41,29 +39,16 @@ public class Player
          diff = new Dice("medium");
       }
    }
-   public void roll(int n)
+   public String isCPU()
    {
-      int f = diff.roll();
-      if(tokens[n].getPathOn(0))
-      {
-         for(int i = 1; i <= f; i++)
-         {
-            tokens[n].move();
-         }
-      }
-      else if(tokens[n].getPathOn(1))
-      {
-         
-      }
-      else if(tokens[n].getPathOn(2))
-      {
-         
-      }
-      else
-      {
-         System.err.println("Error: It is inposxsible to select an end piece");
-         System.exit(0);
-      }
+      return cpu;
    }
-   
+   public Token[] getTokens()
+   {
+      return tokens;
+   }
+   public String getDifficulty()
+   {
+      return diff.getDiff();
+   }
 }

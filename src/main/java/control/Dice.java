@@ -37,12 +37,14 @@ public class Dice
    //Dice objects needed to make a proper dice
    private int[] dice;
    private Random r;
+   private String diff;
    /**
     * The Dice constructor 
     * @param in is a parameter that is just a string that must determine the difficulty of the dice (Easy, Medium, or Hard)
     */
    public Dice(String in)
    {
+      diff = in;
       if(in.toLowerCase().equals("easy")) //dice constructor to set difficulty
       {
          dice = easy;
@@ -68,5 +70,9 @@ public class Dice
    public int roll()
    {
       return dice[r.nextInt(dice.length)];
+   }
+   public String getDiff()
+   {
+      return diff;
    }
 }

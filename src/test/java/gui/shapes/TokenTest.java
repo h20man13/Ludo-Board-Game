@@ -25,7 +25,7 @@ public class TokenTest {
    @Test
    public void test() 
    {
-      Token f = new Token(null, 0, null);
+      Token f = new Token(null, 0, null, 0);
       assertNull(f);
    }
 
