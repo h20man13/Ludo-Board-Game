@@ -14,6 +14,8 @@ import gui.shapes.Token;
 import java.lang.String;
 import javafx.scene.paint.Color;
 import gui.board.Board;
+import java.lang.Math;
+import java.util.ArrayList;
 /**
  * 
  */
@@ -50,5 +52,28 @@ public class Player
    public String getDifficulty()
    {
       return diff.getDiff();
+   }
+   public int[] returnPossibleIndex()
+   {
+      ArrayList<Integer> ar = new ArrayList<Integer>();
+      for(int i = 0; i < tokens.length; i++)
+      {
+         
+      }
+   }
+   public int findClosest(Coordinates f)
+   {
+      int index = 0;
+      double closestC = Math.sqrt((f.X() - tokens[0].getCoordinates().X()) * (f.X() - tokens[0].getCoordinates().X()) + (f.Y() - tokens[0].getCoordinates().Y()) * (f.Y() - tokens[0].getCoordinates().Y()));
+      for(int i = 0; i < tokens.length; i++)
+      {
+         double n = Math.sqrt((f.X() - tokens[i].getCoordinates().X()) * (f.X() - tokens[i].getCoordinates().X()) + (f.Y() - tokens[i].getCoordinates().Y()) * (f.Y() - tokens[i].getCoordinates().Y()));
+         if(n < closestC)
+         {
+            closestC = n;
+            index = i;
+         }
+      }
+      return index;
    }
 }

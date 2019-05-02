@@ -14,13 +14,13 @@ package gui;
 import control.*;
 import gui.board.*;
 import java.io.FileNotFoundException;
+import java.util.Random;
 import java.util.Scanner;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -39,6 +39,11 @@ public class Ludo extends Application
    private static int tokens;
    private static Label[] labels;
    private static int[] Scores;
+   private static int turn;
+   private static double Mousex;
+   private static double Mousey;
+   private boolean cont = false;
+   private boolean game = true;
    public static void main(String[] args) throws FileNotFoundException 
    {
       boolean ex = Save.exists("LudoFile");
@@ -69,6 +74,7 @@ public class Ludo extends Application
             }
             String[] diff = savedata[6].split(" ");
             String[] path = savedata[7].split("-");
+            turn = (int)Save.toDouble(savedata[8]);
             Color[] colors = new Color[playerNumber];
             labels = new Label[playerNumber];
             for(int i = 0; i < playerNumber; i++)
@@ -124,6 +130,8 @@ public class Ludo extends Application
          Scanner s = new Scanner(System.in);
          System.out.print("How many players are in this game: ");
          playerNumber = (int)Save.toDouble(s.nextLine());
+         Random r = new Random();
+         r.nextInt(playerNumber);
          labels = new Label[playerNumber];
          for(int i = 0; i < playerNumber; i++)
          {
@@ -232,7 +240,112 @@ public class Ludo extends Application
       
       //my new classes for creating shapes
       Button roll = new Button("Roll");
+      
+      roll.setOnAction(e ->
+      {
+         roll.isDisabled();
+         while(!cont);
+         int clos = Players[turn].findClosest(new Coordinates(Mousex, Mousey));
+         if(Players[turn].getTokens()[clos].y = 10)
+         {
+            
+         }
+      });
+      
       Button exit = new Button("Exit Game");
+      
+      exit.setOnAction(e -> 
+      {
+         exit.isDisabled();
+         stage.close();
+         game = false;
+         System.out.println("Whould you like to save the file[yes/no]: ");
+         //Scanner sd = new Scanner(System.in);
+         //String nl = sd.nextLine();
+         //sd.close();
+         //if(nl.equals("yes"))
+         //{
+            Save ss = new Save("LudoFile");
+            String[] save = new String[9];
+            save[0] = Save.toString((double)playerNumber);
+            save[1] = Save.toString((double)tokens);
+            save[2] = "";
+            for(int i = 0; i < playerNumber - 1; i++)
+            {
+               save[2] += Players[i].isCPU() + " ";
+            }
+            save[2] += Players[playerNumber - 1].isCPU();
+            save[3] = "";
+            for(int i = 0; i < playerNumber - 1; i++)
+            {
+               for(int x = 0; x < tokens - 1; x++)
+               {
+                  save[3] += Save.toString(Players[i].getTokens()[x].getCoordinates().X()) + " ";
+               }
+               save[3] += Save.toString(Players[i].getTokens()[tokens - 1].getCoordinates().X()) + "-";
+            }
+            for(int x = 0; x < tokens - 1; x++)
+            {
+               save[3] += Save.toString(Players[playerNumber - 1].getTokens()[x].getCoordinates().X()) + " ";
+            }
+            save[3] += Save.toString(Players[playerNumber - 1].getTokens()[tokens - 1].getCoordinates().X());
+            save[4] = "";
+            for(int i = 0; i < playerNumber - 1; i++)
+            {
+               for(int x = 0; x < tokens - 1; x++)
+               {
+                  save[4] += Save.toString(Players[i].getTokens()[x].getCoordinates().Y()) + " ";
+               }
+               save[4] += Save.toString(Players[i].getTokens()[tokens - 1].getCoordinates().Y()) + "-";
+            }
+            for(int x = 0; x < tokens - 1; x++)
+            {
+               save[4] += Save.toString(Players[playerNumber - 1].getTokens()[x].getCoordinates().Y()) + " ";
+            }
+            save[4] += Save.toString(Players[playerNumber - 1].getTokens()[tokens - 1].getCoordinates().Y());
+            save[5] = "";
+            for(int i = 0; i < playerNumber - 1; i++)
+            {
+               save[5] += Save.toString((int)Scores[i]) + " ";
+            }
+            save[5] += Save.toString((int)Scores[playerNumber - 1]);
+            save[6] = "";
+            for(int i = 0; i < playerNumber - 1; i++)
+            {
+               save[6] += Players[i].getDifficulty() + " ";
+            }
+            save[6] += Players[playerNumber - 1].getDifficulty();
+            save[7] = "";
+            for(int i = 0; i < playerNumber - 1; i++)
+            {
+               for(int x = 0; x < tokens - 1; x++)
+               {
+                  save[7] += Save.toString(Players[i].getTokens()[x].getPath()) + " ";
+               }
+               save[7] += Save.toString(Players[i].getTokens()[tokens - 1].getPath()) + "-";
+            }
+            for(int x = 0; x < tokens - 1; x++)
+            {
+               save[7] += Save.toString(Players[playerNumber - 1].getTokens()[x].getPath()) + " ";
+            }
+            save[7] += Save.toString(Players[playerNumber - 1].getTokens()[tokens - 1].getPath());
+            save[8] = Save.toString(turn);
+            try 
+            {
+              ss.save(save);
+            } 
+            catch (FileNotFoundException e1) 
+            {
+               //do nothing
+            }
+            System.out.println("Saving Complete");
+         //}
+        // else
+         //{
+           // System.exit(0);
+        // }
+      });        
+      
       VBox v = new VBox();
       v.setPadding(new Insets(10, 10, 10, 10));
       v.setSpacing(10);
@@ -258,96 +371,26 @@ public class Ludo extends Application
       stage.setTitle("LUDO"); //title is ludo
       stage.setMaximized(true); //set it to full screen with a window
       stage.show(); //show the stage
-      exit.setOnAction(new EventHandler<ActionEvent>() 
+      
+      game();
+   }
+   private void mousePressed(MouseEvent e) 
+   {
+      Mousex = e.getX();
+      Mousey = e.getY();
+      if(Mousex <= 610 && Mousex >= 10 && Mousey <= 610 && Mousey >= 10)
       {
-         public void handle(ActionEvent e) 
+         cont = true;
+      }
+   }
+   private void game()
+   {
+      while(game)
+      {
+         if(Players[turn].isCPU().equals("yes"))
          {
-             System.out.println("Whould you like to save the file[yes/no]: ");
-             
-             Scanner sd = new Scanner(System.in);
-             String nl = sd.nextLine();
-             sd.close();
-             if(nl.equals("yes"))
-             {
-                Save ss = new Save("LudoFile");
-                String[] save = new String[8];
-                save[0] = Save.toString((double)playerNumber);
-                save[1] = Save.toString((double)tokens);
-                save[2] = "";
-                for(int i = 0; i < playerNumber - 1; i++)
-                {
-                   save[2] += Players[i].isCPU() + " ";
-                }
-                save[2] += Players[playerNumber - 1].isCPU();
-                save[3] = "";
-                for(int i = 0; i < playerNumber - 1; i++)
-                {
-                   for(int x = 0; x < tokens - 1; x++)
-                   {
-                      save[3] += Save.toString(Players[i].getTokens()[x].getCoordinates().X()) + " ";
-                   }
-                   save[3] += Save.toString(Players[i].getTokens()[tokens - 1].getCoordinates().X()) + "-";
-                }
-                for(int x = 0; x < tokens - 1; x++)
-                {
-                   save[3] += Save.toString(Players[playerNumber - 1].getTokens()[x].getCoordinates().X()) + " ";
-                }
-                save[3] += Save.toString(Players[playerNumber - 1].getTokens()[tokens - 1].getCoordinates().X());
-                save[4] = "";
-                for(int i = 0; i < playerNumber - 1; i++)
-                {
-                   for(int x = 0; x < tokens - 1; x++)
-                   {
-                      save[4] += Save.toString(Players[i].getTokens()[x].getCoordinates().Y()) + " ";
-                   }
-                   save[4] += Save.toString(Players[i].getTokens()[tokens - 1].getCoordinates().Y()) + "-";
-                }
-                for(int x = 0; x < tokens - 1; x++)
-                {
-                   save[4] += Save.toString(Players[playerNumber - 1].getTokens()[x].getCoordinates().Y()) + " ";
-                }
-                save[4] += Save.toString(Players[playerNumber - 1].getTokens()[tokens - 1].getCoordinates().Y());
-                save[5] = "";
-                for(int i = 0; i < playerNumber - 1; i++)
-                {
-                   save[5] += Save.toString((int)Scores[i]) + " ";
-                }
-                save[5] += Save.toString((int)Scores[playerNumber - 1]);
-                save[6] = "";
-                for(int i = 0; i < playerNumber - 1; i++)
-                {
-                   save[6] += Players[i].getDifficulty() + " ";
-                }
-                save[6] += Players[playerNumber - 1].getDifficulty();
-                save[7] = "";
-                for(int i = 0; i < playerNumber - 1; i++)
-                {
-                   for(int x = 0; x < tokens - 1; x++)
-                   {
-                      save[7] += Save.toString(Players[i].getTokens()[x].getPath()) + " ";
-                   }
-                   save[7] += Save.toString(Players[i].getTokens()[tokens - 1].getPath()) + "-";
-                }
-                for(int x = 0; x < tokens - 1; x++)
-                {
-                   save[7] += Save.toString(Players[playerNumber - 1].getTokens()[x].getPath()) + " ";
-                }
-                save[7] += Save.toString(Players[playerNumber - 1].getTokens()[tokens - 1].getPath());
-                try 
-                {
-                  ss.save(save);
-                } 
-                catch (FileNotFoundException e1) 
-                {
-                   //do nothing
-                }
-                System.out.println("Saving Complete");
-             }
-             else
-             {
-                System.exit(0);
-             }
+            
          }
-      });
+      }
    }
 }
