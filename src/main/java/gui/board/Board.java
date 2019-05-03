@@ -24,9 +24,13 @@ public class Board
    public static SquareBoard[] finalGreen = new SquareBoard[5];
    public static SquareBoard[] finalBlue = new SquareBoard[5];
    public static SquareBoard[] finalYellow = new SquareBoard[5];
+   public static double offx;
+   public static double offy;
    private boolean tf = true;
    public Board(double offsetx, double offsety, double size)
    {
+      offx = offsetx;
+      offy = offsety;
       if(tf)
       {
          MainSquares[0] = new SquareBoard(new Coordinates(offsetx, offsety), size * 2 / 5, Color.RED);

@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
  * This class is used to create a circle on the initialized pane
  * @author Jacob Bauer
  */
-public class CircleBoard
+public class CircleBoard implements ShapesBoard
 {
    private Circle CC;
    private Coordinates to;

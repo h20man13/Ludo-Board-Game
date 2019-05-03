@@ -44,20 +44,20 @@ public class Ludo extends Application
    private static double Mousex;
    private static double Mousey;
    private static boolean cont = false;
+   private static Label v;
    public static void main(String[] args) throws FileNotFoundException 
    {
       boolean ex = Save.exists("LudoFile");
+      Scanner myscann = new Scanner(System.in);
       if(ex)
       {
-         Scanner s = new Scanner(System.in);
          System.out.print("There is a save available would you like to resume[Y/N]: ");
-         String ss = s.nextLine();
-         s.close();
+         String ss = myscann.nextLine();
          if(ss.equals("Y"))
          {
+            myscann.close();
             BoardPane.InitPane(new Pane());
             new Board(10, 10, 600);
-            s.close();
             Save S = new Save("LudoFile");
             String[] savedata = S.get();
             playerNumber = (int)Save.toDouble(savedata[0]);
@@ -75,6 +75,7 @@ public class Ludo extends Application
             String[] diff = savedata[6].split(" ");
             String[] path = savedata[7].split("-");
             turn = (int)Save.toDouble(savedata[8]);
+            v = new Label("Player " + (turn + 1) + "'s turn");
             Color[] colors = new Color[playerNumber];
             labels = new Label[playerNumber];
             for(int i = 0; i < playerNumber; i++)
@@ -127,11 +128,8 @@ public class Ludo extends Application
       {
          BoardPane.InitPane(new Pane());
          new Board(10, 10, 600);
-         Scanner s = new Scanner(System.in);
          System.out.print("How many players are in this game: ");
-         playerNumber = (int)Save.toDouble(s.nextLine());
-         Random r = new Random();
-         r.nextInt(playerNumber);
+         playerNumber = (int)Save.toDouble(myscann.nextLine());
          labels = new Label[playerNumber];
          for(int i = 0; i < playerNumber; i++)
          {
@@ -140,7 +138,10 @@ public class Ludo extends Application
          Color[] colors = new Color[playerNumber];
          Players = new Player[playerNumber];
          System.out.print("How many tokens per player: ");
-         tokens = (int)Save.toDouble(s.nextLine());
+         tokens = (int)Save.toDouble(myscann.nextLine());
+         Random r  = new Random();
+         turn = r.nextInt(playerNumber);
+         v = new Label("Player " + (turn + 1) + "'s turn");
          Coordinates[][] starts = new Coordinates[playerNumber][tokens];
          Scores = new int[playerNumber];
          for(int i = 0; i < playerNumber; i++)
@@ -213,12 +214,12 @@ public class Ludo extends Application
          for(int p = 0; p < playerNumber; p++)
          {
             System.out.print("Is player " + (p + 1) + " a computer[yes/no]: ");
-            String yn = s.nextLine();
+            String yn = myscann.nextLine();
             String dif = "medium";
             if(yn.equals("yes"))
             {
                System.out.print("What Difficulty[easy/medium/hard]: ");
-               dif = s.nextLine();
+               dif = myscann.nextLine();
             }
             int[] pp = new int[tokens];
             for(int i = 0; i < tokens; i++)
@@ -227,7 +228,7 @@ public class Ludo extends Application
             }
             Players[p] = new Player(tokens, yn, starts[p], colors[p], new Dice(dif), pp);
          }
-         s.close();
+         myscann.close();
       }
       launch(args);
    }
@@ -235,8 +236,6 @@ public class Ludo extends Application
    public void start(Stage stage) throws Exception 
    {
       //sets pane as the boardpane
-      
-       //creates board
       
       //my new classes for creating shapes
       Button roll = new Button("Roll");
@@ -394,8 +393,164 @@ public class Ludo extends Application
                   }
                }
              }
+             turn = (turn + 1) % playerNumber;
+             v.textProperty().set("Player " + (turn + 1) + "'s turn");
           }
-         turn = (turn + 1) % playerNumber;
+         else if(cont)
+         {
+            int[] in = Players[turn].findpossible();
+            int rr = in[Players[turn].findClosest(new Coordinates(Mousex, Mousey))];
+            if(checkInArray(in, rr))
+            {
+               int rll = Players[turn].Roll();
+               Token f = Players[turn].getTokens()[rr];
+               Coordinates original = f.getCoordinates();
+               if(f.getPath() == 0)
+               {
+                  if(Players[turn].getColor().equals(Color.RED))
+                  {
+                     f.move(Board.MainPath[42].getCenter());
+                     f.setPath(1);
+                     f.setCurrentAdress(42);
+                  }
+                  else if(Players[turn].getColor().equals(Color.GREEN))
+                  {
+                     f.move(Board.MainPath[3].getCenter());
+                     f.setPath(1);
+                     f.setCurrentAdress(3);
+                  }
+                  else if(Players[turn].getColor().equals(Color.YELLOW))
+                  {
+                     f.move(Board.MainPath[16].getCenter());
+                     f.setPath(1);
+                     f.setCurrentAdress(16);
+                  }
+                  else if(Players[turn].getColor().equals(Color.BLUE))
+                  {
+                     f.move(Board.MainPath[29].getCenter());
+                     f.setPath(1);
+                     f.setCurrentAdress(29);
+                  }
+               }
+               if(f.getPath() == 1)
+               {
+                  boolean done = true;
+                  for(; rll > 0; rll--)
+                  {
+                     f.setCurrentAdress((f.getCurrentAdress() + 1) % Board.MainPath.length);
+                     f.move(Board.MainPath[f.getCurrentAdress()].getCenter());
+                     if(Players[turn].getColor().equals(Color.RED) && f.getCurrentAdress() == 40)
+                     {
+                        f.setCurrentAdress(0);
+                        f.setPath(2);
+                        done = false;
+                        break;
+                     }
+                     else if(Players[turn].getColor().equals(Color.GREEN) && f.getCurrentAdress() == 1)
+                     {
+                        f.setCurrentAdress(0);
+                        f.setPath(2);
+                        done = false;
+                        break;
+                     }
+                     else if(Players[turn].getColor().equals(Color.YELLOW) && f.getCurrentAdress() == 14)
+                     {
+                        f.setCurrentAdress(0);
+                        f.setPath(2);
+                        done = false;
+                        break;
+                     }
+                     else if(Players[turn].getColor().equals(Color.BLUE) && f.getCurrentAdress() == 27)
+                     {
+                        f.setCurrentAdress(0);
+                        f.setPath(2);
+                        done = false;
+                        break;
+                     }
+                  }
+                  if(done)
+                  {
+                     Token c = playerCheck(f.getCoordinates());
+                     if(c != null)
+                     {
+                        c.move(original);
+                     }
+                  }
+               }
+               if(f.getPath() == 2 && rll > 0)
+               {
+                 for(; rll > 0; rll--)
+                 {
+                    if(Players[turn].getColor().equals(Color.RED))
+                    {
+                       f.setCurrentAdress(f.getCurrentAdress() + 1);
+                    }
+                    else if(Players[turn].getColor().equals(Color.GREEN))
+                    {
+                       f.setCurrentAdress(f.getCurrentAdress() + 1);
+                    }
+                    else if(Players[turn].getColor().equals(Color.YELLOW))
+                    {
+                       f.setCurrentAdress(f.getCurrentAdress() + 1);
+                    }
+                    else if(Players[turn].getColor().equals(Color.BLUE))
+                    {
+                       f.setCurrentAdress(f.getCurrentAdress() + 1);
+                    }
+                    if(f.getCurrentAdress() == 5)
+                    {
+                       f.setPath(3);
+                       if(Players[turn].getColor().equals(Color.RED))
+                       {
+                          f.setCurrentAdress(0);
+                          f.move(Board.endingLocations[f.getCurrentAdress()].getCoordinates());
+                       }
+                       else if(Players[turn].getColor().equals(Color.GREEN))
+                       {
+                          f.setCurrentAdress(1);
+                          f.move(Board.endingLocations[f.getCurrentAdress()].getCoordinates());
+                       }
+                       else if(Players[turn].getColor().equals(Color.YELLOW))
+                       {
+                          f.setCurrentAdress(3);
+                          f.move(Board.endingLocations[f.getCurrentAdress()].getCoordinates());
+                       }
+                       else if(Players[turn].getColor().equals(Color.BLUE))
+                       {
+                          f.setCurrentAdress(2);
+                          f.move(Board.endingLocations[f.getCurrentAdress()].getCoordinates());
+                       }
+                       Scores[turn]++;
+                       if(Scores[turn] == tokens)
+                       {
+                          System.out.println("Player " + (turn + 1) + " Won the game!!");
+                          System.exit(0);
+                       }
+                       break;
+                    }
+                    if(Players[turn].getColor().equals(Color.RED))
+                    {
+                       f.move(Board.finalRed[f.getCurrentAdress()].getCenter());
+                    }
+                    else if(Players[turn].getColor().equals(Color.GREEN))
+                    {
+                       f.move(Board.finalGreen[f.getCurrentAdress()].getCenter());
+                    }
+                    else if(Players[turn].getColor().equals(Color.YELLOW))
+                    {
+                       f.move(Board.finalYellow[f.getCurrentAdress()].getCenter());
+                    }
+                    else if(Players[turn].getColor().equals(Color.BLUE))
+                    {
+                       f.move(Board.finalBlue[f.getCurrentAdress()].getCenter());
+                    }
+                 }
+               }
+            }
+            cont = false;
+            turn = (turn + 1) % playerNumber;
+            v.textProperty().set("Player " + (turn + 1) + "'s turn");
+         }
       });
       
       Button exit = new Button("Exit Game");
@@ -490,10 +645,10 @@ public class Ludo extends Application
            // System.exit(0);
         // }
       });        
-      
-      VBox v = new VBox();
-      v.setPadding(new Insets(10, 10, 10, 10));
-      v.setSpacing(10);
+      BoardPane.getPane().setOnMouseClicked(e -> mousePressed(e));
+      VBox g = new VBox();
+      g.setPadding(new Insets(10, 10, 10, 10));
+      g.setSpacing(10);
       HBox top = new HBox();
       top.setPadding(new Insets(10, 10, 10, 10));
       top.setSpacing(40);
@@ -506,12 +661,13 @@ public class Ludo extends Application
       {
          medium.getChildren().add(labels[i]);
       }
-      v.getChildren().add(top);
-      v.getChildren().add(medium);
-      BorderPane g = new BorderPane(); //places pane in boarderPane
-      g.setLeft(BoardPane.getPane());
-      g.setRight(v);
-      Scene scene = new Scene(g);
+      medium.getChildren().add(v);
+      g.getChildren().add(top);
+      g.getChildren().add(medium);
+      BorderPane k = new BorderPane(); //places pane in boarderPane
+      k.setLeft(BoardPane.getPane());
+      k.setRight(g);
+      Scene scene = new Scene(k);
       stage.setScene(scene); //sets scene as Scene
       stage.setTitle("LUDO"); //title is ludo
       stage.setMaximized(true); //set it to full screen with a window
@@ -521,10 +677,7 @@ public class Ludo extends Application
    {
       Mousex = e.getX();
       Mousey = e.getY();
-      if(Mousex <= 610 && Mousex >= 10 && Mousey <= 610 && Mousey >= 10)
-      {
-         cont = true;
-      }
+      cont = true;
    }
    private Token playerCheck(Coordinates c)
    {
@@ -542,5 +695,16 @@ public class Ludo extends Application
          }
       }
       return null;
+   }
+   private boolean checkInArray(int[] x, int v)
+   {
+      for(int i = 0; i < x.length; i++)
+      {
+         if(v == x[i])
+         {
+            return true;
+         }
+      }
+      return false;
    }
 }

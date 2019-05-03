@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
 /**
  * This class was created to create a square on the pane
  */
-public class SquareBoard
+public class SquareBoard implements ShapesBoard
 {
    private Rectangle r;
    /**

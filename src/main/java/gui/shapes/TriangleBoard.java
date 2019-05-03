@@ -15,7 +15,7 @@ import java.lang.String;
  * Creates a triangle class for the board
  * @author Jacob Bauer
  */
-public class TriangleBoard
+public class TriangleBoard implements ShapesBoard
 {
    private Polygon triangle;
    
