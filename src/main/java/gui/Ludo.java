@@ -331,22 +331,18 @@ public class Ludo extends Application
                   if(Players[turn].getColor().equals(Color.RED))
                   {
                      f.setCurrentAdress(f.getCurrentAdress() + 1);
-                     f.move(Board.finalRed[f.getCurrentAdress()].getCenter());
                   }
                   else if(Players[turn].getColor().equals(Color.GREEN))
                   {
                      f.setCurrentAdress(f.getCurrentAdress() + 1);
-                     f.move(Board.finalGreen[f.getCurrentAdress()].getCenter());
                   }
                   else if(Players[turn].getColor().equals(Color.YELLOW))
                   {
                      f.setCurrentAdress(f.getCurrentAdress() + 1);
-                     f.move(Board.finalYellow[f.getCurrentAdress()].getCenter());
                   }
                   else if(Players[turn].getColor().equals(Color.BLUE))
                   {
                      f.setCurrentAdress(f.getCurrentAdress() + 1);
-                     f.move(Board.finalBlue[f.getCurrentAdress()].getCenter());
                   }
                   if(f.getCurrentAdress() == 5)
                   {
@@ -379,6 +375,22 @@ public class Ludo extends Application
                         System.exit(0);
                      }
                      break;
+                  }
+                  if(Players[turn].getColor().equals(Color.RED))
+                  {
+                     f.move(Board.finalRed[f.getCurrentAdress]);
+                  }
+                  else if(Players[turn].getColor().equals(Color.GREEN)
+                  {
+                     f.move(Board.finalGreen[f.getCurrentAdress]);
+                  }
+                  else if(Players[turn].getColor().equals(Color.YELLOW)
+                  {
+                     f.move(Board.finalYellowgetCurrentAdress]);
+                  }
+                  else if(Players[turn].getColor().equals(Color.BLUE)
+                  {
+                     f.move(Board.finalBlue[f.getCurrentAdress]);
                   }
                }
              }

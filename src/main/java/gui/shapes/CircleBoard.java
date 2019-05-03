@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 public class CircleBoard
 {
    private Circle CC;
+   private Coordinates to;
    /**
     * This constructor is used to create a circle on the pane specified with black outline
     * @param C This will specify the coordinates to spawn the Circle
@@ -43,6 +44,7 @@ public class CircleBoard
    {
       CC.setTranslateX(c.X() - getCoordinates().X());
       CC.setTranslateY(c.Y() - getCoordinates().Y());
+      to = c;
    }
    /**
     * This method receives the coordinates of the specified circle
@@ -50,7 +52,7 @@ public class CircleBoard
     */
    public Coordinates getCoordinates()
    {
-     return new Coordinates(CC.getCenterX(), CC.getCenterY());
+     return to;
    }
    /**
     * @return the radius of the circle
