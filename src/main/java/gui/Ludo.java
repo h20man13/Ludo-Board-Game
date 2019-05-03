@@ -248,7 +248,7 @@ public class Ludo extends Application
          {
              int[] in = Players[turn].findpossible();
              Random r = new Random();
-             int rr = r.nextInt(in.length);
+             int rr = in[r.nextInt(in.length)];
              int rll = Players[turn].Roll();
              Token f = Players[turn].getTokens()[rr];
              Coordinates original = f.getCoordinates();
@@ -378,19 +378,19 @@ public class Ludo extends Application
                   }
                   if(Players[turn].getColor().equals(Color.RED))
                   {
-                     f.move(Board.finalRed[f.getCurrentAdress]);
+                     f.move(Board.finalRed[f.getCurrentAdress()].getCenter());
                   }
-                  else if(Players[turn].getColor().equals(Color.GREEN)
+                  else if(Players[turn].getColor().equals(Color.GREEN))
                   {
-                     f.move(Board.finalGreen[f.getCurrentAdress]);
+                     f.move(Board.finalGreen[f.getCurrentAdress()].getCenter());
                   }
-                  else if(Players[turn].getColor().equals(Color.YELLOW)
+                  else if(Players[turn].getColor().equals(Color.YELLOW))
                   {
-                     f.move(Board.finalYellowgetCurrentAdress]);
+                     f.move(Board.finalYellow[f.getCurrentAdress()].getCenter());
                   }
-                  else if(Players[turn].getColor().equals(Color.BLUE)
+                  else if(Players[turn].getColor().equals(Color.BLUE))
                   {
-                     f.move(Board.finalBlue[f.getCurrentAdress]);
+                     f.move(Board.finalBlue[f.getCurrentAdress()].getCenter());
                   }
                }
              }

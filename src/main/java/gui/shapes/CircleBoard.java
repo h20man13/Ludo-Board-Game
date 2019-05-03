@@ -29,6 +29,7 @@ public class CircleBoard
    {
       if(BoardPane.check())
       {
+         to = C;
          CC = new Circle(C.X(), C.Y(), R);
          CC.setStroke(Color.BLACK);
          CC.setFill(g);
@@ -42,8 +43,8 @@ public class CircleBoard
    }
    public void Move(Coordinates c)
    {
-      CC.setTranslateX(c.X() - getCoordinates().X());
-      CC.setTranslateY(c.Y() - getCoordinates().Y());
+      CC.setTranslateX(c.X() - CC.getCenterX());
+      CC.setTranslateY(c.Y() - CC.getCenterY());
       to = c;
    }
    /**
