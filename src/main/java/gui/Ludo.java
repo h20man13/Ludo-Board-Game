@@ -13,6 +13,7 @@ package gui;
 
 import control.*;
 import gui.board.*;
+import gui.shapes.Token;
 import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Scanner;
@@ -42,8 +43,7 @@ public class Ludo extends Application
    private static int turn;
    private static double Mousex;
    private static double Mousey;
-   private boolean cont = false;
-   private boolean game = true;
+   private static boolean cont = false;
    public static void main(String[] args) throws FileNotFoundException 
    {
       boolean ex = Save.exists("LudoFile");
@@ -217,7 +217,7 @@ public class Ludo extends Application
             String dif = "medium";
             if(yn.equals("yes"))
             {
-               System.out.print("What Difficulty: ");
+               System.out.print("What Difficulty[easy/medium/hard]: ");
                dif = s.nextLine();
             }
             int[] pp = new int[tokens];
@@ -244,12 +244,146 @@ public class Ludo extends Application
       roll.setOnAction(e ->
       {
          roll.isDisabled();
-         while(!cont);
-         int clos = Players[turn].findClosest(new Coordinates(Mousex, Mousey));
-         if(Players[turn].getTokens()[clos].y = 10)
+         if(Players[turn].isCPU().equals("yes"))
          {
-            
-         }
+             int[] in = Players[turn].findpossible();
+             Random r = new Random();
+             int rr = r.nextInt(in.length);
+             int rll = Players[turn].Roll();
+             Token f = Players[turn].getTokens()[rr];
+             Coordinates original = f.getCoordinates();
+             if(f.getPath() == 0)
+             {
+                if(Players[turn].getColor().equals(Color.RED))
+                {
+                   f.move(Board.MainPath[42].getCenter());
+                   f.setPath(1);
+                   f.setCurrentAdress(42);
+                }
+                else if(Players[turn].getColor().equals(Color.GREEN))
+                {
+                   f.move(Board.MainPath[3].getCenter());
+                   f.setPath(1);
+                   f.setCurrentAdress(3);
+                }
+                else if(Players[turn].getColor().equals(Color.YELLOW))
+                {
+                   f.move(Board.MainPath[16].getCenter());
+                   f.setPath(1);
+                   f.setCurrentAdress(16);
+                }
+                else if(Players[turn].getColor().equals(Color.BLUE))
+                {
+                   f.move(Board.MainPath[29].getCenter());
+                   f.setPath(1);
+                   f.setCurrentAdress(29);
+                }
+             }
+             if(f.getPath() == 1)
+             {
+                boolean done = true;
+                for(; rll > 0; rll--)
+                {
+                   f.setCurrentAdress((f.getCurrentAdress() + 1) % Board.MainPath.length);
+                   f.move(Board.MainPath[f.getCurrentAdress()].getCenter());
+                   if(Players[turn].getColor().equals(Color.RED) && f.getCurrentAdress() == 40)
+                   {
+                      f.setCurrentAdress(0);
+                      f.setPath(2);
+                      done = false;
+                      break;
+                   }
+                   else if(Players[turn].getColor().equals(Color.GREEN) && f.getCurrentAdress() == 1)
+                   {
+                      f.setCurrentAdress(0);
+                      f.setPath(2);
+                      done = false;
+                      break;
+                   }
+                   else if(Players[turn].getColor().equals(Color.YELLOW) && f.getCurrentAdress() == 14)
+                   {
+                      f.setCurrentAdress(0);
+                      f.setPath(2);
+                      done = false;
+                      break;
+                   }
+                   else if(Players[turn].getColor().equals(Color.BLUE) && f.getCurrentAdress() == 27)
+                   {
+                      f.setCurrentAdress(0);
+                      f.setPath(2);
+                      done = false;
+                      break;
+                   }
+                }
+                if(done)
+                {
+                   Token c = playerCheck(f.getCoordinates());
+                   if(c != null)
+                   {
+                      c.move(original);
+                   }
+                }
+             }
+             if(f.getPath() == 2 && rll > 0)
+             {
+               for(; rll > 0; rll--)
+               {
+                  if(Players[turn].getColor().equals(Color.RED))
+                  {
+                     f.setCurrentAdress(f.getCurrentAdress() + 1);
+                     f.move(Board.finalRed[f.getCurrentAdress()].getCenter());
+                  }
+                  else if(Players[turn].getColor().equals(Color.GREEN))
+                  {
+                     f.setCurrentAdress(f.getCurrentAdress() + 1);
+                     f.move(Board.finalGreen[f.getCurrentAdress()].getCenter());
+                  }
+                  else if(Players[turn].getColor().equals(Color.YELLOW))
+                  {
+                     f.setCurrentAdress(f.getCurrentAdress() + 1);
+                     f.move(Board.finalYellow[f.getCurrentAdress()].getCenter());
+                  }
+                  else if(Players[turn].getColor().equals(Color.BLUE))
+                  {
+                     f.setCurrentAdress(f.getCurrentAdress() + 1);
+                     f.move(Board.finalBlue[f.getCurrentAdress()].getCenter());
+                  }
+                  if(f.getCurrentAdress() == 5)
+                  {
+                     f.setPath(3);
+                     if(Players[turn].getColor().equals(Color.RED))
+                     {
+                        f.setCurrentAdress(0);
+                        f.move(Board.endingLocations[f.getCurrentAdress()].getCoordinates());
+                     }
+                     else if(Players[turn].getColor().equals(Color.GREEN))
+                     {
+                        f.setCurrentAdress(1);
+                        f.move(Board.endingLocations[f.getCurrentAdress()].getCoordinates());
+                     }
+                     else if(Players[turn].getColor().equals(Color.YELLOW))
+                     {
+                        f.setCurrentAdress(3);
+                        f.move(Board.endingLocations[f.getCurrentAdress()].getCoordinates());
+                     }
+                     else if(Players[turn].getColor().equals(Color.BLUE))
+                     {
+                        f.setCurrentAdress(2);
+                        f.move(Board.endingLocations[f.getCurrentAdress()].getCoordinates());
+                     }
+                     Scores[turn]++;
+                     labels[turn].textProperty().set("Player: " + (turn + 1) + " Score: " + Scores[turn]);
+                     if(Scores[turn] == tokens)
+                     {
+                        System.out.println("Player " + (turn + 1) + " Won the game!!");
+                        System.exit(0);
+                     }
+                     break;
+                  }
+               }
+             }
+          }
+         turn = (turn + 1) % playerNumber;
       });
       
       Button exit = new Button("Exit Game");
@@ -258,7 +392,6 @@ public class Ludo extends Application
       {
          exit.isDisabled();
          stage.close();
-         game = false;
          System.out.println("Whould you like to save the file[yes/no]: ");
          //Scanner sd = new Scanner(System.in);
          //String nl = sd.nextLine();
@@ -371,8 +504,6 @@ public class Ludo extends Application
       stage.setTitle("LUDO"); //title is ludo
       stage.setMaximized(true); //set it to full screen with a window
       stage.show(); //show the stage
-      
-      game();
    }
    private void mousePressed(MouseEvent e) 
    {
@@ -383,14 +514,21 @@ public class Ludo extends Application
          cont = true;
       }
    }
-   private void game()
+   private Token playerCheck(Coordinates c)
    {
-      while(game)
+      for(int i = 0; i < playerNumber; i++)
       {
-         if(Players[turn].isCPU().equals("yes"))
+         if(i != turn)
          {
-            
+            for(int x = 0; x < tokens; x++)
+            {
+               if(Players[i].getTokens()[x].getCoordinates().X() == c.X() && Players[i].getTokens()[x].getCoordinates().Y() == c.Y())
+               {
+                  return Players[i].getTokens()[x];
+               }
+            }
          }
       }
+      return null;
    }
 }

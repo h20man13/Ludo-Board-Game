@@ -15,7 +15,6 @@ import java.lang.String;
 import javafx.scene.paint.Color;
 import gui.board.Board;
 import java.lang.Math;
-import java.util.ArrayList;
 /**
  * 
  */
@@ -24,8 +23,10 @@ public class Player
    private Token[] tokens;
    private String cpu;
    private Dice diff;
+   private Color c;
    public Player(int tokenAmount, String tf, Coordinates[] C, Color c, Dice d, int[] paths)
    {
+      this.c = c;
       tokens = new Token[tokenAmount];
       for(int i = 0; i < tokenAmount; i++)
       {
@@ -53,14 +54,6 @@ public class Player
    {
       return diff.getDiff();
    }
-   public int[] returnPossibleIndex()
-   {
-      ArrayList<Integer> ar = new ArrayList<Integer>();
-      for(int i = 0; i < tokens.length; i++)
-      {
-         
-      }
-   }
    public int findClosest(Coordinates f)
    {
       int index = 0;
@@ -75,5 +68,35 @@ public class Player
          }
       }
       return index;
+   }
+   public Color getColor()
+   {
+      return c;
+   }
+   public int[] findpossible()
+   {
+      int count = 0;
+      for(int i = 0; i < tokens.length; i++)
+      {
+         if(tokens[i].getPath() < 3 && tokens[i].getPath() >= 0)
+         {
+            count++;
+         }
+      }
+      int[] indexis = new int[count];
+      count = 0;
+      for(int i = 0; i < tokens.length; i++)
+      {
+         if(tokens[i].getPath() < 3 && tokens[i].getPath() >= 0)
+         {
+            indexis[count] = i;
+            count++;
+         }
+      }  
+      return indexis;
+   }
+   public int Roll()
+   {
+      return diff.roll();
    }
 }

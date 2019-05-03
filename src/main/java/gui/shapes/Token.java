@@ -65,4 +65,8 @@ public class Token
    {
       return getPath;
    }
+   public void setPath(int x)
+   {
+      getPath = x;
+   }
 }

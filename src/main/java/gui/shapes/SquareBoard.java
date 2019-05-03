@@ -51,6 +51,10 @@ public class SquareBoard
    {
       return new Coordinates(r.getX(), r.getY());
    }
+   public Coordinates getCenter()
+   {
+      return new Coordinates(r.getX() + (getSize()/2), r.getY() + (getSize()/2));
+   }
    /**
     * 
     * @return The hw of the square
