@@ -69,4 +69,8 @@ public class Token
    {
       getPath = x;
    }
+   public Coordinates getHome()
+   {
+      return inside.getCenter();
+   }
 }

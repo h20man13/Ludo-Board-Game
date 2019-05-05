@@ -45,21 +45,22 @@ public class Ludo extends Application
    private static double Mousey;
    private static boolean cont = false;
    private static Label v;
+   private static Label rollNumber = new Label("");
    public static void main(String[] args) throws FileNotFoundException 
    {
       boolean ex = Save.exists("LudoFile");
-      Scanner myscann = new Scanner(System.in);
       if(ex)
       {
          System.out.print("There is a save available would you like to resume[Y/N]: ");
+         Scanner myscann = new Scanner(System.in);
          String ss = myscann.nextLine();
+         myscann.close();
+         Save S = new Save("LudoFile");
+         String[] savedata = S.get();
          if(ss.equals("Y"))
          {
-            myscann.close();
             BoardPane.InitPane(new Pane());
             new Board(10, 10, 600);
-            Save S = new Save("LudoFile");
-            String[] savedata = S.get();
             playerNumber = (int)Save.toDouble(savedata[0]);
             tokens = (int)Save.toDouble(savedata[1]);
             Players = new Player[playerNumber];
@@ -91,14 +92,14 @@ public class Ludo extends Application
             {
                colors[0] = Color.RED;
                colors[1] = Color.GREEN;
-               colors[2] = Color.BLUE;
+               colors[2] = Color.YELLOW;
             }
             else if(playerNumber == 4)
             {
                colors[0] = Color.RED;
                colors[1] = Color.GREEN;
-               colors[2] = Color.BLUE;
-               colors[3] = Color.YELLOW;
+               colors[2] = Color.YELLOW;
+               colors[3] = Color.BLUE;
             }
             else
             {
@@ -129,7 +130,8 @@ public class Ludo extends Application
          BoardPane.InitPane(new Pane());
          new Board(10, 10, 600);
          System.out.print("How many players are in this game: ");
-         playerNumber = (int)Save.toDouble(myscann.nextLine());
+         Scanner sndScanner = new Scanner(System.in);
+         playerNumber = (int)Save.toDouble(sndScanner.nextLine());
          labels = new Label[playerNumber];
          for(int i = 0; i < playerNumber; i++)
          {
@@ -138,7 +140,7 @@ public class Ludo extends Application
          Color[] colors = new Color[playerNumber];
          Players = new Player[playerNumber];
          System.out.print("How many tokens per player: ");
-         tokens = (int)Save.toDouble(myscann.nextLine());
+         tokens = (int)Save.toDouble(sndScanner.nextLine());
          Random r  = new Random();
          turn = r.nextInt(playerNumber);
          v = new Label("Player " + (turn + 1) + "'s turn");
@@ -214,12 +216,12 @@ public class Ludo extends Application
          for(int p = 0; p < playerNumber; p++)
          {
             System.out.print("Is player " + (p + 1) + " a computer[yes/no]: ");
-            String yn = myscann.nextLine();
+            String yn = sndScanner.nextLine();
             String dif = "medium";
             if(yn.equals("yes"))
             {
                System.out.print("What Difficulty[easy/medium/hard]: ");
-               dif = myscann.nextLine();
+               dif = sndScanner.nextLine();
             }
             int[] pp = new int[tokens];
             for(int i = 0; i < tokens; i++)
@@ -228,8 +230,9 @@ public class Ludo extends Application
             }
             Players[p] = new Player(tokens, yn, starts[p], colors[p], new Dice(dif), pp);
          }
-         myscann.close();
+         sndScanner.close();
       }
+      rollNumber.textProperty().set("Player " + (turn + 1) + "'s roll: ");
       launch(args);
    }
    @Override
@@ -243,14 +246,16 @@ public class Ludo extends Application
       roll.setOnAction(e ->
       {
          roll.isDisabled();
+         rollNumber.textProperty().set("Player " + (turn + 1) + "'s roll: ");
          if(Players[turn].isCPU().equals("yes"))
          {
              int[] in = Players[turn].findpossible();
              Random r = new Random();
              int rr = in[r.nextInt(in.length)];
              int rll = Players[turn].Roll();
+             rollNumber.textProperty().set("Player " + (turn + 1) + "'s roll: " + rll);
              Token f = Players[turn].getTokens()[rr];
-             Coordinates original = f.getCoordinates();
+             //Coordinates original = f.getCoordinates();
              if(f.getPath() == 0)
              {
                 if(Players[turn].getColor().equals(Color.RED))
@@ -319,7 +324,8 @@ public class Ludo extends Application
                    Token c = playerCheck(f.getCoordinates());
                    if(c != null)
                    {
-                      c.move(original);
+                      c.move(c.getHome());
+                      c.setPath(0);
                    }
                 }
              }
@@ -403,8 +409,9 @@ public class Ludo extends Application
             if(checkInArray(in, rr))
             {
                int rll = Players[turn].Roll();
+               rollNumber.textProperty().set("Player " + (turn + 1) + "'s roll: " + rll);
                Token f = Players[turn].getTokens()[rr];
-               Coordinates original = f.getCoordinates();
+               //Coordinates original = f.getCoordinates();
                if(f.getPath() == 0)
                {
                   if(Players[turn].getColor().equals(Color.RED))
@@ -473,7 +480,8 @@ public class Ludo extends Application
                      Token c = playerCheck(f.getCoordinates());
                      if(c != null)
                      {
-                        c.move(original);
+                        c.move(c.getHome());
+                        c.setPath(0);
                      }
                   }
                }
@@ -559,7 +567,6 @@ public class Ludo extends Application
       {
          exit.isDisabled();
          stage.close();
-         System.out.println("Whould you like to save the file[yes/no]: ");
          //Scanner sd = new Scanner(System.in);
          //String nl = sd.nextLine();
          //sd.close();
@@ -657,11 +664,12 @@ public class Ludo extends Application
       HBox medium = new HBox();
       medium.setPadding(new Insets(10, 10, 10, 10));
       medium.setSpacing(10);
+      medium.getChildren().add(v);
+      medium.getChildren().add(rollNumber);
       for(int i = 0; i < playerNumber; i++)
       {
          medium.getChildren().add(labels[i]);
       }
-      medium.getChildren().add(v);
       g.getChildren().add(top);
       g.getChildren().add(medium);
       BorderPane k = new BorderPane(); //places pane in boarderPane
@@ -670,7 +678,7 @@ public class Ludo extends Application
       Scene scene = new Scene(k);
       stage.setScene(scene); //sets scene as Scene
       stage.setTitle("LUDO"); //title is ludo
-      stage.setMaximized(true); //set it to full screen with a window
+      stage.setFullScreen(true); //set it to full screen with a window
       stage.show(); //show the stage
    }
    private void mousePressed(MouseEvent e) 

@@ -62,4 +62,8 @@ public class CircleBoard implements ShapesBoard
    {
       return CC.getRadius();
    }
+   public Coordinates getCenter()
+   {
+      return new Coordinates(CC.getCenterX(), CC.getCenterY());
+   }
 }
