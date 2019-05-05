@@ -10,10 +10,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 package control;
-import gui.shapes.Token;
 import java.lang.String;
 import javafx.scene.paint.Color;
 import gui.board.Board;
+import gui.board.Token;
+
 import java.lang.Math;
 /**
  * 

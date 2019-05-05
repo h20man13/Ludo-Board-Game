@@ -4,10 +4,11 @@
 // Authors:          Jacob Bauer
 ////////////////////////////////////////////////////////////////////////////////
 
-package gui.shapes;
+package gui.board;
 
 import javafx.scene.paint.Color;
 import control.Coordinates;
+import gui.shapes.CircleBoard;
 /**
  * This class is what creates the token mobjects that will move around the board
  * @author Jacob Bauer

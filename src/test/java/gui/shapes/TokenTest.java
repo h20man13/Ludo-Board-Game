@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import gui.shapes.Token;
+import gui.board.Token;
 
 /**
  * 

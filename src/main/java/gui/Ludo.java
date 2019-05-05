@@ -13,7 +13,7 @@ package gui;
 
 import control.*;
 import gui.board.*;
-import gui.shapes.Token;
+
 import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Scanner;
