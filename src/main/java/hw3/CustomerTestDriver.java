@@ -2,7 +2,7 @@ package hw3;
 ////////////////////////////////////////////////////////////////////////////////
 // File:             Customer.java
 // Course:           CSC232, Spring
-// Authors:          Jacob Bauer
+// Authors:          Jacob Bauer, Shriyanshi Shikha, Muhammad Zain Bin Ihsan Janjua
 //
 // Acknowledgements: Prof. Howard
 //                   Provided me with the instructions and the description of the project

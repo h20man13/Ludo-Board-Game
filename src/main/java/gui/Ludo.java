@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File:             Main.java
 // Course:           CSC232B, Spring 2019
-// Authors:          Jacob Bauer
+// Authors:          Jacob Bauer, Shriyanshi Shikha, Muhammad Zain Bin Ihsan Janjua
 //
 // Acknowledgements: (list anyone else other than your instructor who helped)
 //                   (describe in detail the the ideas and help they provided)

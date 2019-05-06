@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File:             CircleBoard.java
 // Course:           CSC232B, Spring 2019
-// Authors:          Jacob Bauer, 
+// Authors:          Jacob Bauer, Shriyanshi Shikha, Muhammad Zain Bin Ihsan Janjua
 // Online sources:   Stack OverFlow - I used this to figure out how to use a pane to display shapes
 ////////////////////////////////////////////////////////////////////////////////
 
