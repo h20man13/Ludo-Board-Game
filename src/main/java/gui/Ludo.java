@@ -64,6 +64,7 @@ public class Ludo extends Application
             playerNumber = (int)Save.toDouble(savedata[0]);
             tokens = (int)Save.toDouble(savedata[1]);
             Players = new Player[playerNumber];
+            Coordinates[][] starts = new Coordinates[playerNumber][tokens];
             String[] yorn = savedata[2].split(" "); //stats to make players
             String[] PlayersX = savedata[3].split("-");
             String[] PlayersY = savedata[4].split("-");
@@ -76,6 +77,7 @@ public class Ludo extends Application
             String[] diff = savedata[6].split(" ");
             String[] path = savedata[7].split("-");
             turn = (int)Save.toDouble(savedata[8]);
+            String[] adres = savedata[9].split("-");
             v = new Label("Player " + (turn + 1) + "'s turn");
             Color[] colors = new Color[playerNumber];
             labels = new Label[playerNumber];
@@ -85,24 +87,70 @@ public class Ludo extends Application
             }
             if(playerNumber == 2)
             {
+               int start = 0;
                colors[0] = Color.RED;
+               for(int i = start; i < start + tokens; i++)
+               {
+                  starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
+               }
                colors[1] = Color.YELLOW;
+               start = 12;
+               for(int i = start; i < start + tokens; i++)
+               {
+                  starts[1][i - start] = Board.StartingLocations[i].getCoordinates();
+               }
             }
             else if(playerNumber == 3)
             {
                colors[0] = Color.RED;
+               int start = 0;
+               for(int i = start; i < start + tokens; i++)
+               {
+                  starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
+               }
                colors[1] = Color.GREEN;
+               start = 4;
+               for(int i = start; i < start + tokens; i++)
+               {
+                  starts[1][i - start] = Board.StartingLocations[i].getCoordinates();
+               }
                colors[2] = Color.YELLOW;
+               start = 12;
+               for(int i = start; i < start + tokens; i++)
+               {
+                  starts[2][i - start] = Board.StartingLocations[i].getCoordinates();
+               }
             }
             else if(playerNumber == 4)
             {
                colors[0] = Color.RED;
+               int start = 0;
+               for(int i = start; i < start + tokens; i++)
+               {
+                  starts[0][i - start] = Board.StartingLocations[i].getCoordinates();
+               }
                colors[1] = Color.GREEN;
+               start = 4;
+               for(int i = start; i < start + tokens; i++)
+               {
+                  starts[1][i - start] = Board.StartingLocations[i].getCoordinates();
+               }
                colors[2] = Color.YELLOW;
+               start = 12;
+               for(int i = start; i < start + tokens; i++)
+               {
+                  starts[2][i - start] = Board.StartingLocations[i].getCoordinates();
+               }
                colors[3] = Color.BLUE;
+               start = 8;
+               for(int i = start; i < start + tokens; i++)
+               {
+                  starts[3][i - start] = Board.StartingLocations[i].getCoordinates();
+               }
             }
             else
             {
+               System.err.println("Error: too many players");
                System.exit(0);
             }
             for(int x = 0; x < playerNumber; x++)
@@ -110,6 +158,7 @@ public class Ludo extends Application
                String[] ppath = path[x].split(" ");
                String[] playerx = PlayersX[x].split(" ");
                String[] playery = PlayersY[x].split(" ");
+               String[] spladr = adres[x].split(" ");
                Coordinates[] coordinates = new Coordinates[tokens];
                int[] pathcorrect = new int[tokens];
                for(int i = 0; i < tokens; i++)
@@ -117,7 +166,12 @@ public class Ludo extends Application
                   coordinates[i] = new Coordinates(Save.toDouble(playerx[i]), Save.toDouble(playery[i]));
                   pathcorrect[i] = (int)Save.toDouble(ppath[i]);
                }
-               Players[x] = new Player(tokens, yorn[x], coordinates, colors[x], new Dice(diff[x]), pathcorrect);
+               Players[x] = new Player(tokens, yorn[x], starts[x], colors[x], new Dice(diff[x]), pathcorrect);
+               for(int y = 0; y < tokens; y++)
+               {
+                     Players[x].getTokens()[y].move(coordinates[y]);
+                     Players[x].getTokens()[y].setCurrentAdress((int)Save.toDouble(spladr[y]));
+               }
             }
          }
          else
@@ -573,7 +627,7 @@ public class Ludo extends Application
          //if(nl.equals("yes"))
          //{
             Save ss = new Save("LudoFile");
-            String[] save = new String[9];
+            String[] save = new String[10];
             save[0] = Save.toString((double)playerNumber);
             save[1] = Save.toString((double)tokens);
             save[2] = "";
@@ -637,6 +691,20 @@ public class Ludo extends Application
             }
             save[7] += Save.toString(Players[playerNumber - 1].getTokens()[tokens - 1].getPath());
             save[8] = Save.toString(turn);
+            save[9] = "";
+            for(int i = 0; i < playerNumber - 1; i++)
+            {
+               for(int x = 0; x < tokens - 1; x++)
+               {
+                  save[9] += Save.toString(Players[i].getTokens()[x].getCurrentAdress()) + " ";
+               }
+               save[9] += Save.toString(Players[i].getTokens()[tokens - 1].getCurrentAdress()) + "-";
+            }
+            for(int x = 0; x < tokens - 1; x++)
+            {
+               save[9] += Save.toString(Players[playerNumber - 1].getTokens()[x].getCurrentAdress()) + " ";
+            }
+            save[9] += Save.toString(Players[playerNumber - 1].getTokens()[tokens - 1].getCurrentAdress());
             try 
             {
               ss.save(save);
