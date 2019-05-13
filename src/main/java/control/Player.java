@@ -40,7 +40,7 @@ public class Player
       }
       else
       {
-         diff = new Dice("medium");
+         diff = Dice.create("medium");
       }
    }
    public String isCPU()

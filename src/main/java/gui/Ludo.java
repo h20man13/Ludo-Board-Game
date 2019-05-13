@@ -166,7 +166,7 @@ public class Ludo extends Application
                   coordinates[i] = new Coordinates(Save.toDouble(playerx[i]), Save.toDouble(playery[i]));
                   pathcorrect[i] = (int)Save.toDouble(ppath[i]);
                }
-               Players[x] = new Player(tokens, yorn[x], starts[x], colors[x], new Dice(diff[x]), pathcorrect);
+               Players[x] = new Player(tokens, yorn[x], starts[x], colors[x], Dice.create(diff[x]), pathcorrect);
                for(int y = 0; y < tokens; y++)
                {
                      Players[x].getTokens()[y].move(coordinates[y]);
@@ -282,7 +282,7 @@ public class Ludo extends Application
             {
                pp[i] = 0;
             }
-            Players[p] = new Player(tokens, yn, starts[p], colors[p], new Dice(dif), pp);
+            Players[p] = new Player(tokens, yn, starts[p], colors[p], Dice.create(dif), pp);
          }
          sndScanner.close();
       }
