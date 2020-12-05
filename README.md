@@ -13,10 +13,10 @@ This game can be set up by passing information via terminal.<br><br>
  **Part 2** (if AI only / said YES on part 1 | B) => what is the difficulty level for player X: <EASY/MEDIUM/HARD> <br>
  **N** *=>* is against another local player <br>
 
-# Playing the Game
-Shortly after the Command Line setup a window with the board will appear. <br>
+# Playing the Game <br>
+Shortly after the Command Line setup a window with the board will appear <br>
 In the top you should see which players turn it is <br>
-* The player needs to select a piece they want to move * 
+* The player needs to select a piece they want to move * <br>
 * The user will gain acces to a roll button to roll the dice. * <br>
 ** Note: If the player is a CPU one of the local players needs to still click the roll button for the AI However the AI will chose the piece it wants to move** <br>
 * This was by design so the player could actually mentally record the AIs movements as apposed to it just rolling right after the previous players turn. *
