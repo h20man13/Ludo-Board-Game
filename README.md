@@ -14,4 +14,6 @@ This game can be set up by passing information via terminal.<br><br>
  **N** *=>* is against another local player <br>
 
 # Playing the Game
-The user will gain acces to a roll button to roll the dice. If the player is a CPU one of the local players needs to still click the roll button for them. This was by design so the player could actually mentally record the AIs movements as apposed to it just rolling right away.f
+Shortly after the Command Line setup a window with the board will appear.
+In the top you should see which players turn it is
+The user will gain acces to a roll button to roll the dice. If the player is a CPU one of the local players needs to still click the roll button for them. This was by design so the player could actually mentally record the AIs movements as apposed to it just rolling right after the previous players turn.
