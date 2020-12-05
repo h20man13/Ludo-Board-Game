@@ -10,7 +10,7 @@ This game can be set up by passing information via terminal.<br><br>
 **3...10)** *=>* 
 **Part 1**  Do you want player X to be a computer <Y/N> *where X represents the player number anywhere from 1...4* <br>
  **Y** *=>* is against an AI <br>
- **Part 2** (if AI onlyased on part 1 | B) => what is the difficulty level for player X: <EASY/MEDIUM/HARD> <br>
+ **Part 2** (if AI only / said YES on part 1 | B) => what is the difficulty level for player X: <EASY/MEDIUM/HARD> <br>
  **N** *=>* is against another local player <br>
 
 # Playing the Game
