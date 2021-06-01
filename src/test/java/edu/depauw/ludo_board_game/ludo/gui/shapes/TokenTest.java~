@@ -1,0 +1,34 @@
+////////////////////////////////////////////////////////////////////////////////
+// File:             TokenTest.java
+// Course:           CSC232B, Spring 2019
+// Authors:          (your name and the names of other members of your group)
+//
+// Acknowledgements: (list anyone else other than your instructor who helped)
+//                   (describe in detail the the ideas and help they provided)
+//
+// Online sources:   (include Web URLs and description of any information used)
+////////////////////////////////////////////////////////////////////////////////
+
+package test.gui.shapes;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import gui.board.Token;
+
+/**
+ * 
+ */
+public class TokenTest {
+
+   @Test
+   public void test() 
+   {
+      Token f = new Token(null, 0, null, 0);
+      assertNull(f);
+   }
+
+}

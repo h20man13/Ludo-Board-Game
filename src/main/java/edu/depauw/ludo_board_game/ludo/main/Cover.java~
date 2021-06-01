@@ -1,0 +1,13 @@
+package main;
+
+import main.Ludo;
+
+public class Cover{
+    public static void main(final String[] args){
+	try {
+	    Ludo.main(args);
+        } catch (Exception e){
+
+	}
+    }
+}
