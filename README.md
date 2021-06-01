@@ -3,15 +3,15 @@
 The ludo Board game is based off of the Board game ludo. It is a game where the user tries to get all of their pieces to the middle of the board. It is kind of played like sorry. Copy and paste the link below to see more of the rules. 
 
 # Ludo Game Set Up
-This game can be set up by passing information via terminal.<br><br>
-**It will ask you a series of questions:** <br>
-**1)** *=>* How many players will play in the game <2...4> <br>
-**2)** *=>* How many Tokens will each player get <1...4> <br>
-**3...10)** *=>* 
-**Part 1**  Do you want player X to be a computer <Y/N> *where X represents the player number anywhere from 1...4* <br>
- **Y** *=>* is against an AI <br>
- **Part 2** (if AI only / said YES on part 1 | B) => what is the difficulty level for player X: <EASY/MEDIUM/HARD> <br>
- **N** *=>* is against another local player <br>
+Ever since I switched back to maven some of the system.out text for the initial setup has been showing up late probably because it is buffered in some way or there is some other thread running and it is blocking it. Besides not showing up the console application part reamians the same. The standard input you will need to put in is below in parethesis and the system.output that was supposed to show up is also below.
+
+1) If there is a save available it will ask if you want to resume (Enter Y for yes and N for no)
+2) If there wasnt a save or you enetered no it will ask you the following:
+3) How many players (Enter a number 1 .. 4)
+4) How many tokens for each player (Enter a number 1 .. 4)
+5) Now it will loop through each player and ask the following:
+6) Is player X a CPU(Enter yes or no)
+7) If they ansered yes then it will follow up asking to enter the diffuculty (Enter Easy medium or Hard)
 
 # Playing the Game <br>
 Shortly after the Command Line setup a window with the board will appear <br>
